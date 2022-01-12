@@ -25,17 +25,15 @@ class IssueView(TemplateView):
         kwargs['issue'] = issue
         return super().get_context_data(**kwargs)
 
-# class AddIssueView(View):
-#
-#     def get(self):
-#         return render(self.request, 'issue_view.html')
 
-def AddView(request):
-    if request.method == 'GET':
+class AddIssueView(View):
+
+    def get(self, request, *args, **kwargs):
         form = IssueForm()
         context = {'form': form}
         return render(request, "add_issue_view.html", context)
-    else:
+
+    def post(self, request, *args, **kwargs):
         form = IssueForm(data=request.POST)
         if form.is_valid():
             summary = request.POST.get('summary')
@@ -43,9 +41,12 @@ def AddView(request):
             status_pk = request.POST.get('status')
             type_pk = request.POST.get('type')
             status = Status.objects.get(pk=status_pk)
-            type = Type.objects.get(pk=type_pk)
+            type_name = Type.objects.get(pk=type_pk)
 
             new_issue = Issue(summary=summary, description=description,
-                          status=status, type=type)
+                              status=status, type=type_name)
             new_issue.save()
-    return redirect('index_view')
+            return redirect('index_view')
+        return render(request, "add_issue_view.html", {'form': IssueForm()})
+
+

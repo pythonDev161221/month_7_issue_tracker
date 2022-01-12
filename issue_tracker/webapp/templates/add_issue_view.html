@@ -6,7 +6,7 @@
 {% block content %}
     <h2>New issue</h2>
     <form method="post" action="{% url 'add_issue_view' %}">
-    {% include 'partial/issue_form.html' %}
+    {% include 'partial/issue_form.html' with button_text="Создать" %}
     </form>
 
 {% endblock %}
