@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h2>Home page</h2>
+    {% for i in issues %}
+        <p><a href="{% url 'issue_view' i.pk %}">{{ i.summary }}</a></p>
+    {% endfor %}
+{% endblock %}

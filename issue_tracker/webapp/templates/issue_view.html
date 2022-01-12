@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Issue view html</h2>
+
+    <p>title: {{ issue.summary }}</p>
+    <p>description: {{ issue.description }}</p>
+    <p>status: {{ issue.status }}</p>
+    <p>type: {{ issue.type }}</p>
+
+{% endblock %}
