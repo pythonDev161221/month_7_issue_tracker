@@ -21,4 +21,4 @@ class IssueView(TemplateView):
     def get_context_data(self, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs['issue_pk'])
         kwargs['issue'] = issue
-        return kwargs
+        return super().get_context_data(**kwargs)
