@@ -1,2 +1,146 @@
 [
+{
+    "model": "webapp.basestr",
+    "pk": 1,
+    "fields": {
+        "name": "Task"
+    }
+},
+{
+    "model": "webapp.basestr",
+    "pk": 2,
+    "fields": {
+        "name": "New"
+    }
+},
+{
+    "model": "webapp.basestr",
+    "pk": 3,
+    "fields": {
+        "name": "In Progress"
+    }
+},
+{
+    "model": "webapp.basestr",
+    "pk": 4,
+    "fields": {
+        "name": "Done"
+    }
+},
+{
+    "model": "webapp.basestr",
+    "pk": 5,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "webapp.basestr",
+    "pk": 6,
+    "fields": {
+        "name": "Enhancement"
+    }
+},
+{
+    "model": "webapp.type",
+    "pk": 1,
+    "fields": {}
+},
+{
+    "model": "webapp.type",
+    "pk": 5,
+    "fields": {}
+},
+{
+    "model": "webapp.type",
+    "pk": 6,
+    "fields": {}
+},
+{
+    "model": "webapp.status",
+    "pk": 2,
+    "fields": {}
+},
+{
+    "model": "webapp.status",
+    "pk": 3,
+    "fields": {}
+},
+{
+    "model": "webapp.status",
+    "pk": 4,
+    "fields": {}
+},
+{
+    "model": "webapp.issue",
+    "pk": 1,
+    "fields": {
+        "summary": "first summary",
+        "description": "first description",
+        "status": 2,
+        "type": 1,
+        "create_at": "2022-01-12T11:24:54.409Z",
+        "update_at": "2022-01-12T11:24:54.409Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 2,
+    "fields": {
+        "summary": "second issues",
+        "description": "222222222222222  22222",
+        "status": 2,
+        "type": 1,
+        "create_at": "2022-01-12T11:40:57.573Z",
+        "update_at": "2022-01-12T11:40:57.573Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 3,
+    "fields": {
+        "summary": "third issues",
+        "description": "33333333 3 333333333333",
+        "status": 3,
+        "type": 6,
+        "create_at": "2022-01-12T11:41:24.238Z",
+        "update_at": "2022-01-12T11:41:24.238Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 4,
+    "fields": {
+        "summary": "fifth issues",
+        "description": "5555555555 555555555555555",
+        "status": 4,
+        "type": 5,
+        "create_at": "2022-01-12T11:41:47.002Z",
+        "update_at": "2022-01-12T11:41:47.002Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 5,
+    "fields": {
+        "summary": "fourst issues",
+        "description": "4444444444  44444444444444444 444444",
+        "status": 2,
+        "type": 6,
+        "create_at": "2022-01-12T11:42:17.850Z",
+        "update_at": "2022-01-12T11:42:17.850Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 6,
+    "fields": {
+        "summary": "sixth issues",
+        "description": "666666666       666666666666 6 6 6 6666666",
+        "status": 4,
+        "type": 1,
+        "create_at": "2022-01-12T11:42:43.597Z",
+        "update_at": "2022-01-12T11:42:43.598Z"
+    }
+}
 ]
