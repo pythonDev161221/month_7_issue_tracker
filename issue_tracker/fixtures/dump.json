@@ -2,74 +2,74 @@
 {
     "model": "webapp.basestr",
     "pk": 1,
-    "fields": {
-        "name": "Task"
-    }
+    "fields": {}
 },
 {
     "model": "webapp.basestr",
     "pk": 2,
-    "fields": {
-        "name": "New"
-    }
+    "fields": {}
 },
 {
     "model": "webapp.basestr",
     "pk": 3,
-    "fields": {
-        "name": "In Progress"
-    }
+    "fields": {}
 },
 {
     "model": "webapp.basestr",
     "pk": 4,
-    "fields": {
-        "name": "Done"
-    }
+    "fields": {}
 },
 {
     "model": "webapp.basestr",
     "pk": 5,
-    "fields": {
-        "name": "Bug"
-    }
+    "fields": {}
 },
 {
     "model": "webapp.basestr",
     "pk": 6,
+    "fields": {}
+},
+{
+    "model": "webapp.type",
+    "pk": 1,
     "fields": {
         "name": "Enhancement"
     }
 },
 {
     "model": "webapp.type",
-    "pk": 1,
-    "fields": {}
-},
-{
-    "model": "webapp.type",
     "pk": 5,
-    "fields": {}
+    "fields": {
+        "name": "Bug"
+    }
 },
 {
     "model": "webapp.type",
     "pk": 6,
-    "fields": {}
+    "fields": {
+        "name": "Task"
+    }
 },
 {
     "model": "webapp.status",
     "pk": 2,
-    "fields": {}
+    "fields": {
+        "name": "Done"
+    }
 },
 {
     "model": "webapp.status",
     "pk": 3,
-    "fields": {}
+    "fields": {
+        "name": "In progress"
+    }
 },
 {
     "model": "webapp.status",
     "pk": 4,
-    "fields": {}
+    "fields": {
+        "name": "New"
+    }
 },
 {
     "model": "webapp.issue",
@@ -169,26 +169,26 @@
 },
 {
     "model": "webapp.issue",
-    "pk": 9,
-    "fields": {
-        "summary": "e5tyet",
-        "description": "sr5ter dfg",
-        "status": 3,
-        "type": 5,
-        "create_at": "2022-01-12T17:56:29.018Z",
-        "update_at": "2022-01-13T07:28:47.025Z"
-    }
-},
-{
-    "model": "webapp.issue",
     "pk": 11,
     "fields": {
-        "summary": "qwer",
+        "summary": "qwersfe",
         "description": "fbvsrdg",
         "status": 4,
         "type": 6,
         "create_at": "2022-01-13T06:02:57.772Z",
-        "update_at": "2022-01-13T06:02:57.772Z"
+        "update_at": "2022-01-13T09:37:10.533Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 12,
+    "fields": {
+        "summary": "sergesrgsgr",
+        "description": "sdfgr",
+        "status": 2,
+        "type": 5,
+        "create_at": "2022-01-13T11:13:36.684Z",
+        "update_at": "2022-01-13T11:13:36.684Z"
     }
 }
 ]
