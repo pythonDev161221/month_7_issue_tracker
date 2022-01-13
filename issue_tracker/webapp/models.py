@@ -2,20 +2,21 @@ from django.db import models
 
 
 # Create your models here.
+import webapp.models
+
 
 class BaseStr(models.Model):
-    name = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return f'{self.name}'
 
 
 class Type(BaseStr):
-    pass
+    name = models.CharField(max_length=100, null=False, blank=False, default='Task')
 
 
 class Status(BaseStr):
-    pass
+    name = models.CharField(max_length=100, null=False, blank=False, default='New')
 
 
 class Issue(models.Model):

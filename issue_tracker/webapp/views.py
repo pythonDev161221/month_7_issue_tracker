@@ -43,10 +43,10 @@ class AddIssueView(View):
             status = Status.objects.get(pk=status_pk)
             type_name = Type.objects.get(pk=type_pk)
 
-            Issue(summary=summary, description=description,
-                  status=status, type=type_name).save()
+            Issue.objects.create(summary=summary, description=description,
+                                 status=status, type=type_name)
             return redirect('index_view')
-        return render(request, "add_issue_view.html", {'form': IssueForm()})
+        return render(request, "add_issue_view.html", {'form': form})
 
 
 class UpdateIssueView(View):

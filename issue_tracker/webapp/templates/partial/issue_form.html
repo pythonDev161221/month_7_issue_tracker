@@ -1,8 +1,29 @@
     {% csrf_token %}
+{% for error in form.non_field_errors %}
+   <p class="text-danger">{{ error }}</p>
+{% endfor %}
 
-    {% for field in form %}
-    <p><label for="{{ field.id_for_label }}">{{ field.label }}: </label>
-    {{ field }}</p>
+{% for field in form %}
+    <p><label for="{{ field.id_for_label }}">{{ field.label }}: </label></p>
+    {% for error in field.errors %}
+        <p class="text-danger">{{ error }}</p>
     {% endfor %}
+    <p>{{ field }}</p>
 
+{% endfor %}
+<p><label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label></p>
+{% for error in form.title.errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
+{{ form.title }}
+<p><label for="{{ form.author.id_for_label }}">{{ form.author.label }}</label></p>
+{% for error in form.author.errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
+{{ form.author }}
+<p><label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label></p>
+{% for error in form.content.errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
+{{ form.content }}
     <input type="submit" value="{{ button_text }}">
