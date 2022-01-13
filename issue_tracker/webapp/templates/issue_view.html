@@ -11,5 +11,5 @@ Issue page
     <p>description: {{ issue.description }}</p>
     <p>status: {{ issue.status }}</p>
     <p>type: {{ issue.type }}</p>
-
+    <a href="{% url 'update_issue_view' issue.pk %}">Update</a>
 {% endblock %}
