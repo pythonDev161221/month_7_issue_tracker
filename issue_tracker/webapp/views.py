@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import TemplateView
 
-from webapp.forms import IssueForm
+from webapp.forms import IssueForm, SearchForm
 from webapp.models import Issue, Status, Type
 
 
@@ -15,6 +15,19 @@ class IndexView(TemplateView):
         issues = Issue.objects.all()
         kwargs['issues'] = issues
         return kwargs
+
+
+class SearchView(View):
+    def get(self, request, *args, **kwargs):
+        form = SearchForm()
+        search = request.GET.get('search')
+        issues = Issue.objects.filter(summary=search)
+        context = {"issues": issues}
+        return render(request, 'index.html', context)
+
+        # form = SearchForm()
+        # kwargs['form'] = form
+
 
 
 class IssueView(TemplateView):

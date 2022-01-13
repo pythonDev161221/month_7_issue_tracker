@@ -7,3 +7,7 @@ class IssueForm(forms.Form):
     description = forms.CharField(max_length=2000, required=False, widget=forms.Textarea)
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True)
     type = forms.ModelChoiceField(queryset=Type.objects.all(), required=True)
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False)
