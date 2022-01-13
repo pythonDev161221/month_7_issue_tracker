@@ -51,7 +51,8 @@ class AddIssueView(View):
 
 class UpdateIssueView(View):
     def get(self, request, *args, **kwargs):
-        issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
+        # issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         form = IssueForm(initial={
             'summary': issue.summary,
             'description': issue.description,
