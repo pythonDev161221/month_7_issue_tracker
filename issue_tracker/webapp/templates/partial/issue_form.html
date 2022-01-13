@@ -11,9 +11,5 @@
     <p>{{ field }}</p>
 
 {% endfor %}
-<p><label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label></p>
-{% for error in form.title.errors %}
-    <p class="text-danger">{{ error }}</p>
-{% endfor %}
 
     <input type="submit" value="{{ button_text }}">
