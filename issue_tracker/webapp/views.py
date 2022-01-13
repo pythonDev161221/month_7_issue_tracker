@@ -51,7 +51,13 @@ class AddIssueView(View):
 
 class UpdateIssueView(View):
     def get(self, request, *args, **kwargs):
-        form = IssueForm()
+        issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
+        form = IssueForm(initial={
+            'summary': issue.summary,
+            'description': issue.description,
+            'status': issue.status,
+            'type': issue.type,
+        })
         # issue = Issue.objects.get(pk='issue_pk')
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         context = {'form': form, 'issue': issue}
@@ -76,7 +82,7 @@ class UpdateIssueView(View):
 
 class IssueDeleteView(View):
     def get(self, request, *args, **kwargs):
-        issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         return render(request, 'issue_delete.html', {'issue': issue})
 
     def post(self, request, *args, **kwargs):

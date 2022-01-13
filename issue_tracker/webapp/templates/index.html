@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
     <h2>Main page</h2>
     {% for i in issues %}
-        <p><a href="{% url 'issue_view' i.pk %}">{{ i.summary }}</a></p>
+        <p><a href="{% url 'issue_view' i.pk %}">{{ i.summary }} | {{ i.type }} | {{ i.status }}</a>
+         *** <a href="{% url 'update_issue_view' i.pk %}">Изменить</a> |
+        <a href="{% url 'issue_delete_view' i.pk %}">Удалить</a></p>
     {% endfor %}
 {% endblock %}
