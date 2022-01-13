@@ -14,6 +14,8 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         issues = Issue.objects.all()
         kwargs['issues'] = issues
+        form = SearchForm()
+        kwargs['form'] = form
         return kwargs
 
 
@@ -21,13 +23,11 @@ class SearchView(View):
     def get(self, request, *args, **kwargs):
         form = SearchForm()
         search = request.GET.get('search')
+        if not search:
+            return redirect('index_view')
         issues = Issue.objects.filter(summary=search)
-        context = {"issues": issues}
+        context = {"issues": issues, "form": form}
         return render(request, 'index.html', context)
-
-        # form = SearchForm()
-        # kwargs['form'] = form
-
 
 
 class IssueView(TemplateView):
