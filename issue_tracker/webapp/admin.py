@@ -11,7 +11,7 @@ from .models import Issue, Type, Status, IssueType
 #     readonly_fields = ['created_at', 'updated_at']
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ['id', 'summary', 'description', 'status', 'type']
+    list_display = ['id', 'summary', 'description', 'status']
     readonly_fields = ['create_at', 'update_at']
     # list_filter = ['summary']
     search_fields = ['summary']

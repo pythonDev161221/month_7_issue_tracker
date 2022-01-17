@@ -32,7 +32,7 @@ class Issue(models.Model):
     summary = models.CharField(max_length=200, null=False, blank=False)
     description = models.TextField(max_length=2000, null=True, blank=True)
     status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT)
-    type = models.ForeignKey('webapp.Type', on_delete=models.PROTECT, null=True, blank=True)
+    # type = models.ForeignKey('webapp.Type', on_delete=models.PROTECT, null=True, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
