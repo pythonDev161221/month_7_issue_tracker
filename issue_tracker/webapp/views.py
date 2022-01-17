@@ -83,12 +83,14 @@ class UpdateIssueView(View):
         issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
         # issue = get_object_or_404(Issue, pk='issue_pk')
         if form.is_valid():
+            type_names = form.cleaned_data.pop('type_names')
             issue.summary = request.POST.get('summary')
             issue.description = request.POST.get('description')
             status_pk = request.POST.get('status')
-            type_pk = request.POST.get('type')
+            # type_pk = request.POST.get('type')
             issue.status = Status.objects.get(pk=status_pk)
-            issue.type = Type.objects.get(pk=type_pk)
+            # issue.type_names = Type.objects.get(pk=type_pk)
+            issue.type_names.set(type_names)
             issue.save()
 
             return redirect('index_view')
