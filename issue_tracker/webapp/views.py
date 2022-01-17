@@ -41,16 +41,25 @@ class AddIssueView(View):
     def post(self, request, *args, **kwargs):
         form = IssueForm(data=request.POST)
         if form.is_valid():
+            type_names = form.cleaned_data.pop('type_names')
+
             summary = request.POST.get('summary')
             description = request.POST.get('description')
             status_pk = request.POST.get('status')
-            type_pk = request.POST.get('type')
+            # type_pk = request.POST.get('type_names')
             status = Status.objects.get(pk=status_pk)
-            type_name = Type.objects.get(pk=type_pk)
+            # type_names = Type.objects.filter(pk=type_pk)
+            # form.cleaned_data['status'] = status
+            # new_issue = Issue.objects.create(**form.cleaned_data)
+            # new_issue.type_names.set(type_names)
+            # new_issue.status.set(status)
 
-            Issue.objects.create(summary=summary, description=description,
-                                 status=status, type=type_name)
-            return redirect('index_view')
+            # Issue.objects.create(summary=summary, description=description,
+            #                      status=status, type_names=type_names)
+            new_issue = Issue.objects.create(summary=summary, description=description,
+                                 status=status)
+            new_issue.type_names.set(type_names)
+            return redirect('issue_view', issue_pk=new_issue.pk)
         return render(request, "add_issue_view.html", {'form': form})
 
 
@@ -62,7 +71,7 @@ class UpdateIssueView(View):
             'summary': issue.summary,
             'description': issue.description,
             'status': issue.status,
-            'type': issue.type,
+            'type_names': issue.type_names.all(),
         })
         # issue = Issue.objects.get(pk='issue_pk')
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
