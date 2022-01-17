@@ -135,6 +135,22 @@
     }
 },
 {
+    "model": "webapp.issuetype",
+    "pk": 16,
+    "fields": {
+        "issue": 17,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 17,
+    "fields": {
+        "issue": 17,
+        "type_name": 7
+    }
+},
+{
     "model": "webapp.status",
     "pk": 2,
     "fields": {
@@ -162,7 +178,6 @@
         "summary": "first summary",
         "description": "first description",
         "status": 2,
-        "type": 1,
         "create_at": "2022-01-12T11:24:54.409Z",
         "update_at": "2022-01-12T11:24:54.409Z"
     }
@@ -174,7 +189,6 @@
         "summary": "second issues",
         "description": "222222222222222  22222",
         "status": 2,
-        "type": 1,
         "create_at": "2022-01-12T11:40:57.573Z",
         "update_at": "2022-01-12T11:40:57.573Z"
     }
@@ -186,7 +200,6 @@
         "summary": "third issues",
         "description": "33333333 3 333333333333",
         "status": 3,
-        "type": 6,
         "create_at": "2022-01-12T11:41:24.238Z",
         "update_at": "2022-01-17T08:34:33.374Z"
     }
@@ -198,7 +211,6 @@
         "summary": "fifth issues",
         "description": "5555555555 555555555555555",
         "status": 4,
-        "type": 5,
         "create_at": "2022-01-12T11:41:47.002Z",
         "update_at": "2022-01-12T11:41:47.002Z"
     }
@@ -210,7 +222,6 @@
         "summary": "fourst issues",
         "description": "4444444444  44444444444444444 444444",
         "status": 2,
-        "type": 6,
         "create_at": "2022-01-12T11:42:17.850Z",
         "update_at": "2022-01-12T11:42:17.850Z"
     }
@@ -222,7 +233,6 @@
         "summary": "sixth issues",
         "description": "666666666       666666666666 6 6 6 6666666",
         "status": 4,
-        "type": 1,
         "create_at": "2022-01-12T11:42:43.597Z",
         "update_at": "2022-01-12T11:42:43.598Z"
     }
@@ -234,7 +244,6 @@
         "summary": "drgsedf gsr",
         "description": "sfdg ser gs",
         "status": 2,
-        "type": 6,
         "create_at": "2022-01-12T16:36:20.349Z",
         "update_at": "2022-01-13T06:02:02.539Z"
     }
@@ -246,7 +255,6 @@
         "summary": "strhtrhrdht",
         "description": "sdfgsdrg",
         "status": 3,
-        "type": 5,
         "create_at": "2022-01-12T16:40:24.602Z",
         "update_at": "2022-01-12T16:40:24.602Z"
     }
@@ -258,7 +266,6 @@
         "summary": "qwersfe",
         "description": "fbvsrdg",
         "status": 4,
-        "type": 6,
         "create_at": "2022-01-13T06:02:57.772Z",
         "update_at": "2022-01-13T09:37:10.533Z"
     }
@@ -270,7 +277,6 @@
         "summary": "sergesrgsgr",
         "description": "sdfgr",
         "status": 2,
-        "type": 5,
         "create_at": "2022-01-13T11:13:36.684Z",
         "update_at": "2022-01-13T11:13:36.684Z"
     }
@@ -282,7 +288,6 @@
         "summary": "ssreg",
         "description": "fsgsd",
         "status": 3,
-        "type": null,
         "create_at": "2022-01-17T07:41:15.570Z",
         "update_at": "2022-01-17T07:41:15.570Z"
     }
@@ -294,9 +299,19 @@
         "summary": "dfgserg",
         "description": "fdgsrg333",
         "status": 2,
-        "type": null,
         "create_at": "2022-01-17T07:46:57.217Z",
         "update_at": "2022-01-17T08:03:08.026Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 17,
+    "fields": {
+        "summary": "summaryshell",
+        "description": null,
+        "status": 2,
+        "create_at": "2022-01-17T08:55:39.306Z",
+        "update_at": "2022-01-17T08:55:39.307Z"
     }
 }
 ]
