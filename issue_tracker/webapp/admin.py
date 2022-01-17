@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Issue, Type, Status, IssueType
+from .models import Issue, Type, Status
 
 
 # Register your models here.
@@ -34,8 +34,8 @@ class StatusAdmin(admin.ModelAdmin):
 admin.site.register(Status, StatusAdmin)
 
 
-class IssueTypeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'issue', 'type_name']
+# class IssueTypeAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'issue', 'type_name']
 
 
-admin.site.register(IssueType, IssueTypeAdmin)
+# admin.site.register(IssueType, IssueTypeAdmin)

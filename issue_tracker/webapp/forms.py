@@ -12,5 +12,6 @@ class IssueForm(forms.Form):
                                                 widget=forms.CheckboxSelectMultiple)
 
 
+
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False)
