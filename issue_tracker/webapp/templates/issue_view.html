@@ -3,14 +3,22 @@
 {% block title %}
 Issue page
 {% endblock %}
-
+{% block nav %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'update_issue_view' issue.pk %}">Изменить задание</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'issue_delete_view' issue.pk %}">Удалить задание</a>
+</li>
+{% endblock %}
 {% block content %}
 <h2>Issue view html</h2>
 
     <p>title: {{ issue.summary }}</p>
     <p>description: {{ issue.description }}</p>
     <p>status: {{ issue.status }}</p>
-    <p>type: {{ issue.type }}</p>
-    <a href="{% url 'update_issue_view' issue.pk %}">Изменить</a>
-    <a href="{% url 'issue_delete_view' issue.pk %}">Удалить</a>
+{#    <p>type: {{ issue.type }}</p>#}
+<h3>Типы</h3>
+    <p>type: {% for type in issue.type_names.all %}{{ type.name }}
+    {% if not forloop.last %}, {% endif %}. {% endfor %}</p>
 {% endblock %}
