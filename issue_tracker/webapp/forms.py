@@ -8,7 +8,8 @@ class IssueForm(forms.Form):
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True)
     # type = forms.ModelChoiceField(queryset=Type.objects.all(), required=True)
     type_names = forms.ModelMultipleChoiceField(queryset=Type.objects.all(),
-                                                required=False, label='Типы')
+                                                required=False, label='Типы',
+                                                widget=forms.CheckboxSelectMultiple)
 
 
 class SearchForm(forms.Form):

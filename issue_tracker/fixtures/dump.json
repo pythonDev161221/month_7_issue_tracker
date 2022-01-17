@@ -88,30 +88,6 @@
 },
 {
     "model": "webapp.issuetype",
-    "pk": 10,
-    "fields": {
-        "issue": 16,
-        "type_name": 5
-    }
-},
-{
-    "model": "webapp.issuetype",
-    "pk": 11,
-    "fields": {
-        "issue": 16,
-        "type_name": 6
-    }
-},
-{
-    "model": "webapp.issuetype",
-    "pk": 12,
-    "fields": {
-        "issue": 16,
-        "type_name": 1
-    }
-},
-{
-    "model": "webapp.issuetype",
     "pk": 13,
     "fields": {
         "issue": 3,
@@ -136,18 +112,122 @@
 },
 {
     "model": "webapp.issuetype",
-    "pk": 16,
+    "pk": 18,
     "fields": {
-        "issue": 17,
+        "issue": 7,
         "type_name": 1
     }
 },
 {
     "model": "webapp.issuetype",
-    "pk": 17,
+    "pk": 19,
     "fields": {
-        "issue": 17,
+        "issue": 7,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 20,
+    "fields": {
+        "issue": 11,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 21,
+    "fields": {
+        "issue": 11,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 24,
+    "fields": {
+        "issue": 4,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 25,
+    "fields": {
+        "issue": 4,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 26,
+    "fields": {
+        "issue": 4,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 27,
+    "fields": {
+        "issue": 19,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 28,
+    "fields": {
+        "issue": 19,
         "type_name": 7
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 29,
+    "fields": {
+        "issue": 2,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 30,
+    "fields": {
+        "issue": 2,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 31,
+    "fields": {
+        "issue": 8,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 32,
+    "fields": {
+        "issue": 8,
+        "type_name": 7
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 33,
+    "fields": {
+        "issue": 13,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 34,
+    "fields": {
+        "issue": 19,
+        "type_name": 1
     }
 },
 {
@@ -190,7 +270,7 @@
         "description": "222222222222222  22222",
         "status": 2,
         "create_at": "2022-01-12T11:40:57.573Z",
-        "update_at": "2022-01-12T11:40:57.573Z"
+        "update_at": "2022-01-17T10:25:58.879Z"
     }
 },
 {
@@ -212,7 +292,7 @@
         "description": "5555555555 555555555555555",
         "status": 4,
         "create_at": "2022-01-12T11:41:47.002Z",
-        "update_at": "2022-01-12T11:41:47.002Z"
+        "update_at": "2022-01-17T10:25:28.689Z"
     }
 },
 {
@@ -241,77 +321,55 @@
     "model": "webapp.issue",
     "pk": 7,
     "fields": {
-        "summary": "drgsedf gsr",
+        "summary": "seven",
         "description": "sfdg ser gs",
         "status": 2,
         "create_at": "2022-01-12T16:36:20.349Z",
-        "update_at": "2022-01-13T06:02:02.539Z"
+        "update_at": "2022-01-17T10:26:33.524Z"
     }
 },
 {
     "model": "webapp.issue",
     "pk": 8,
     "fields": {
-        "summary": "strhtrhrdht",
+        "summary": "eight",
         "description": "sdfgsdrg",
         "status": 3,
         "create_at": "2022-01-12T16:40:24.602Z",
-        "update_at": "2022-01-12T16:40:24.602Z"
+        "update_at": "2022-01-17T10:26:46.873Z"
     }
 },
 {
     "model": "webapp.issue",
     "pk": 11,
     "fields": {
-        "summary": "qwersfe",
+        "summary": "nine",
         "description": "fbvsrdg",
         "status": 4,
         "create_at": "2022-01-13T06:02:57.772Z",
-        "update_at": "2022-01-13T09:37:10.533Z"
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 12,
-    "fields": {
-        "summary": "sergesrgsgr",
-        "description": "sdfgr",
-        "status": 2,
-        "create_at": "2022-01-13T11:13:36.684Z",
-        "update_at": "2022-01-13T11:13:36.684Z"
+        "update_at": "2022-01-17T10:27:02.833Z"
     }
 },
 {
     "model": "webapp.issue",
     "pk": 13,
     "fields": {
-        "summary": "ssreg",
+        "summary": "ten",
         "description": "fsgsd",
         "status": 3,
         "create_at": "2022-01-17T07:41:15.570Z",
-        "update_at": "2022-01-17T07:41:15.570Z"
+        "update_at": "2022-01-17T10:27:30.298Z"
     }
 },
 {
     "model": "webapp.issue",
-    "pk": 16,
+    "pk": 19,
     "fields": {
-        "summary": "dfgserg",
-        "description": "fdgsrg333",
-        "status": 2,
-        "create_at": "2022-01-17T07:46:57.217Z",
-        "update_at": "2022-01-17T08:03:08.026Z"
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 17,
-    "fields": {
-        "summary": "summaryshell",
-        "description": null,
-        "status": 2,
-        "create_at": "2022-01-17T08:55:39.306Z",
-        "update_at": "2022-01-17T08:55:39.307Z"
+        "summary": "elevan",
+        "description": "aesf",
+        "status": 3,
+        "create_at": "2022-01-17T10:25:39.770Z",
+        "update_at": "2022-01-17T10:27:45.416Z"
     }
 }
 ]
