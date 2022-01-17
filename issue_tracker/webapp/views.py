@@ -26,7 +26,7 @@ class IssueView(TemplateView):
     template_name = 'issue_view.html'
 
     def get_context_data(self, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs['issue_pk'])
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         kwargs['issue'] = issue
         return super().get_context_data(**kwargs)
 
@@ -46,16 +46,9 @@ class AddIssueView(View):
             summary = request.POST.get('summary')
             description = request.POST.get('description')
             status_pk = request.POST.get('status')
-            # type_pk = request.POST.get('type_names')
             status = Status.objects.get(pk=status_pk)
-            # type_names = Type.objects.filter(pk=type_pk)
-            # form.cleaned_data['status'] = status
             # new_issue = Issue.objects.create(**form.cleaned_data)
-            # new_issue.type_names.set(type_names)
-            # new_issue.status.set(status)
 
-            # Issue.objects.create(summary=summary, description=description,
-            #                      status=status, type_names=type_names)
             new_issue = Issue.objects.create(summary=summary, description=description,
                                  status=status)
             new_issue.type_names.set(type_names)
@@ -64,7 +57,6 @@ class AddIssueView(View):
 
 
 class UpdateIssueView(View):
-
     def get(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         form = IssueForm(initial={

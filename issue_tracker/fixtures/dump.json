@@ -30,6 +30,11 @@
     "fields": {}
 },
 {
+    "model": "webapp.basestr",
+    "pk": 7,
+    "fields": {}
+},
+{
     "model": "webapp.type",
     "pk": 1,
     "fields": {
@@ -48,6 +53,85 @@
     "pk": 6,
     "fields": {
         "name": "Task"
+    }
+},
+{
+    "model": "webapp.type",
+    "pk": 7,
+    "fields": {
+        "name": "info"
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 1,
+    "fields": {
+        "issue": 1,
+        "type_name": 7
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 2,
+    "fields": {
+        "issue": 13,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 3,
+    "fields": {
+        "issue": 13,
+        "type_name": 7
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 10,
+    "fields": {
+        "issue": 16,
+        "type_name": 5
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 11,
+    "fields": {
+        "issue": 16,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 12,
+    "fields": {
+        "issue": 16,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 13,
+    "fields": {
+        "issue": 3,
+        "type_name": 1
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 14,
+    "fields": {
+        "issue": 3,
+        "type_name": 6
+    }
+},
+{
+    "model": "webapp.issuetype",
+    "pk": 15,
+    "fields": {
+        "issue": 3,
+        "type_name": 7
     }
 },
 {
@@ -104,7 +188,7 @@
         "status": 3,
         "type": 6,
         "create_at": "2022-01-12T11:41:24.238Z",
-        "update_at": "2022-01-12T11:41:24.238Z"
+        "update_at": "2022-01-17T08:34:33.374Z"
     }
 },
 {
@@ -189,6 +273,30 @@
         "type": 5,
         "create_at": "2022-01-13T11:13:36.684Z",
         "update_at": "2022-01-13T11:13:36.684Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 13,
+    "fields": {
+        "summary": "ssreg",
+        "description": "fsgsd",
+        "status": 3,
+        "type": null,
+        "create_at": "2022-01-17T07:41:15.570Z",
+        "update_at": "2022-01-17T07:41:15.570Z"
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 16,
+    "fields": {
+        "summary": "dfgserg",
+        "description": "fdgsrg333",
+        "status": 2,
+        "type": null,
+        "create_at": "2022-01-17T07:46:57.217Z",
+        "update_at": "2022-01-17T08:03:08.026Z"
     }
 }
 ]

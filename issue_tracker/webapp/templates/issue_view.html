@@ -19,6 +19,6 @@ Issue page
     <p>status: {{ issue.status }}</p>
 {#    <p>type: {{ issue.type }}</p>#}
 <h3>Типы</h3>
-    <p>type: {% for type in issue.type_names.all %}{{ type.name }}
-    {% if not forloop.last %}, {% endif %}. {% endfor %}</p>
+    <p>{% for type in issue.type_names.all %}{{ type.name }}
+    {% if not forloop.last %}, {% endif %} {% endfor %}.</p>
 {% endblock %}
