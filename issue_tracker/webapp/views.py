@@ -64,8 +64,8 @@ class AddIssueView(View):
 
 
 class UpdateIssueView(View):
+
     def get(self, request, *args, **kwargs):
-        # issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         form = IssueForm(initial={
             'summary': issue.summary,
@@ -73,15 +73,12 @@ class UpdateIssueView(View):
             'status': issue.status,
             'type_names': issue.type_names.all(),
         })
-        # issue = Issue.objects.get(pk='issue_pk')
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         context = {'form': form, 'issue': issue}
         return render(request, "update_issue_view.html", context)
 
     def post(self, request, *args, **kwargs):
         form = IssueForm(data=request.POST)
-        issue = Issue.objects.get(pk=kwargs.get('issue_pk'))
-        # issue = get_object_or_404(Issue, pk='issue_pk')
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         if form.is_valid():
             type_names = form.cleaned_data.pop('type_names')
             issue.summary = request.POST.get('summary')
@@ -93,7 +90,7 @@ class UpdateIssueView(View):
             issue.type_names.set(type_names)
             issue.save()
 
-            return redirect('index_view')
+            return redirect('issue_view', issue_pk=issue.pk)
         return render(request, "update_issue_view.html", {'form': form, 'issue': issue})
 
 
