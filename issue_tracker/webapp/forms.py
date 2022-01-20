@@ -31,3 +31,4 @@ class IssueForm(forms.ModelForm):
         if cleaned_data['summary'] == cleaned_data['description']:
             raise ValidationError('Description should not duplicate title')
         return cleaned_data
+
