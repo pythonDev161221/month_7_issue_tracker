@@ -1,4 +1,4 @@
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator, EmailValidator
 from django.db import models
 
 # Create your models here.
@@ -33,7 +33,7 @@ class Issue(models.Model):
     summary = models.CharField(max_length=200, null=False, blank=False,
                                validators=(MinLengthValidator(5, 'it should not be less then 5 character'),))
     description = models.TextField(max_length=2000, null=True, blank=True,
-                                   validators=(), )
+                                   validators=(MinLengthValidator(10),), )
     status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT,
                                validators=(), )
     create_at = models.DateTimeField(auto_now_add=True)

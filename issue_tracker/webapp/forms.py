@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import Type, Status, Issue
 
 
@@ -23,3 +25,9 @@ class IssueForm(forms.ModelForm):
         widgets = {
             'type_names': forms.CheckboxSelectMultiple
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data['summary'] == cleaned_data['description']:
+            raise ValidationError('Description should not duplicate title')
+        return cleaned_data
