@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 
 from webapp.forms import IssueForm, SearchForm
 from webapp.models import Issue, Status, Type
+from webapp.base import FormView as CustomFormView
 
 
 class IndexView(TemplateView):
@@ -31,29 +33,49 @@ class IssueView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class AddIssueView(View):
+# class AddIssueView(View):
+#
+#     def get(self, request, *args, **kwargs):
+#         form = IssueForm()
+#         context = {'form': form}
+#         return render(request, "add_issue_view.html", context)
+#
+#     def post(self, request, *args, **kwargs):
+#         form = IssueForm(data=request.POST)
+#         if form.is_valid():
+#             type_names = form.cleaned_data.pop('type_names')
+#
+#             summary = request.POST.get('summary')
+#             description = request.POST.get('description')
+#             status_pk = request.POST.get('status')
+#             status = Status.objects.get(pk=status_pk)
+#             # new_issue = Issue.objects.create(**form.cleaned_data)
+#
+#             new_issue = Issue.objects.create(summary=summary, description=description,
+#                                  status=status)
+#             new_issue.type_names.set(type_names)
+#             return redirect('issue_view', issue_pk=new_issue.pk)
+#         return render(request, "add_issue_view.html", {'form': form})
 
-    def get(self, request, *args, **kwargs):
-        form = IssueForm()
-        context = {'form': form}
-        return render(request, "add_issue_view.html", context)
+class AddIssueView(CustomFormView):
+    template_name = 'add_issue_view.html'
+    form_class = IssueForm
 
-    def post(self, request, *args, **kwargs):
-        form = IssueForm(data=request.POST)
-        if form.is_valid():
-            type_names = form.cleaned_data.pop('type_names')
+    def form_valid(self, form):
+        data = {}
+        type_names = form.cleaned_data.pop('type_names')
+        for key, value in form.cleaned_data.items():
+            if value is not None:
+                data[key] = value
+        self.issue = Issue.objects.create(**data)
+        self.issue.type_names.set(type_names)
+        return super().form_valid(form)
 
-            summary = request.POST.get('summary')
-            description = request.POST.get('description')
-            status_pk = request.POST.get('status')
-            status = Status.objects.get(pk=status_pk)
-            # new_issue = Issue.objects.create(**form.cleaned_data)
+    def get_redirect_url(self):
+        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
 
-            new_issue = Issue.objects.create(summary=summary, description=description,
-                                 status=status)
-            new_issue.type_names.set(type_names)
-            return redirect('issue_view', issue_pk=new_issue.pk)
-        return render(request, "add_issue_view.html", {'form': form})
+
+
 
 
 class UpdateIssueView(View):

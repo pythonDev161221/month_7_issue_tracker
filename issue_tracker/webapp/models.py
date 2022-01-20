@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 # Create your models here.
@@ -29,10 +30,12 @@ class Status(BaseStr):
 
 
 class Issue(models.Model):
-    summary = models.CharField(max_length=200, null=False, blank=False)
-    description = models.TextField(max_length=2000, null=True, blank=True)
-    status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT)
-    # type = models.ForeignKey('webapp.Type', on_delete=models.PROTECT, null=True, blank=True)
+    summary = models.CharField(max_length=200, null=False, blank=False,
+                               validators=(MinLengthValidator(5, 'it should not be less then 5 character'),))
+    description = models.TextField(max_length=2000, null=True, blank=True,
+                                   validators=(), )
+    status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT,
+                               validators=(), )
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -41,8 +44,6 @@ class Issue(models.Model):
     #                                    through_fields=('issue', 'type_name'),
     #                                    blank=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
-
-
 
     def __str__(self):
         return f'{self.summary}'
