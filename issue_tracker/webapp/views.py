@@ -76,74 +76,74 @@ class AddIssueView(CustomFormView):
         return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
 
 
-class UpdateIssueView(CustomFormView):
-    template_name = 'update_issue_view.html'
-    form_class = IssueForm
-
-    def dispatch(self, request, *args, **kwargs):
-        self.issue = self.get_object()
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_object(self):
-        pk = self.kwargs.get('issue_pk')
-        return get_object_or_404(Issue, pk=pk)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['issue'] = self.issue
-        return context
-
-    # def get_initial(self):
-    #     initial = {}
-    #     for key in 'summary', 'description', 'status':
-    #         initial[key] = getattr(self.issue, key)
-    #     initial['type_names'] = self.issue.type_names.all()
-    #     return initial
-
-
-    def form_valid(self, form):
-        # type_names = form.cleaned_data.pop('type_names')
-        # for key, value in form.cleaned_data.items():
-        #     if value is not None:
-        #         setattr(self.issue, key, value)
-        # self.issue.save()
-        # self.issue.type_names.set(type_names)
-        self.issue = form.save()
-
-        return super().form_valid(form)
-
-    def get_redirect_url(self):
-        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
-
-
-# class UpdateIssueView(FormView):
-#     form_class = IssueForm
+# class UpdateIssueView(CustomFormView):
 #     template_name = 'update_issue_view.html'
+#     form_class = IssueForm
 #
 #     def dispatch(self, request, *args, **kwargs):
 #         self.issue = self.get_object()
-#         # return super().dispatch(request, *args, **kwargs)
-#         return super(UpdateIssueView, self).dispatch(request, *args, **kwargs)
+#         return super().dispatch(request, *args, **kwargs)
 #
 #     def get_object(self):
-#         return get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
+#         pk = self.kwargs.get('issue_pk')
+#         return get_object_or_404(Issue, pk=pk)
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
 #         context['issue'] = self.issue
 #         return context
 #
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         kwargs['instance'] = self.issue
-#         return kwargs
+#     # def get_initial(self):
+#     #     initial = {}
+#     #     for key in 'summary', 'description', 'status':
+#     #         initial[key] = getattr(self.issue, key)
+#     #     initial['type_names'] = self.issue.type_names.all()
+#     #     return initial
+#
 #
 #     def form_valid(self, form):
+#         # type_names = form.cleaned_data.pop('type_names')
+#         # for key, value in form.cleaned_data.items():
+#         #     if value is not None:
+#         #         setattr(self.issue, key, value)
+#         # self.issue.save()
+#         # self.issue.type_names.set(type_names)
 #         self.issue = form.save()
+#
 #         return super().form_valid(form)
 #
-#     def get_success_url(self):
+#     def get_redirect_url(self):
 #         return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
+
+
+class UpdateIssueView(FormView):
+    form_class = IssueForm
+    template_name = 'update_issue_view.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.issue = self.get_object()
+        # return super().dispatch(request, *args, **kwargs)
+        return super(UpdateIssueView, self).dispatch(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['issue'] = self.issue
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.issue
+        return kwargs
+
+    def form_valid(self, form):
+        self.issue = form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
 
 
 class IssueDeleteView(View):
