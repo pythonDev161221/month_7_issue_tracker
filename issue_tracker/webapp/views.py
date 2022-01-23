@@ -19,7 +19,7 @@ class IndexView(TemplateView):
         form = SearchForm()
         kwargs['form'] = form
         if self.request.GET.get('search'):
-            issues = Issue.objects.filter(summary=self.request.GET.get('search'))
+            issues = Issue.objects.filter(summary__icontains=self.request.GET.get('search'))
             kwargs['issues'] = issues
         return kwargs
 
