@@ -309,11 +309,11 @@
     "model": "webapp.issue",
     "pk": 31,
     "fields": {
-        "summary": "seventeen",
-        "description": "asefasefsefef",
+        "summary": "seventeenbug",
+        "description": "seventeenbug",
         "status": 4,
         "create_at": "2022-01-20T11:00:42.468Z",
-        "update_at": "2022-01-23T14:41:06.650Z",
+        "update_at": "2022-01-24T06:18:35.793Z",
         "type_names": [
             5
         ]
@@ -398,10 +398,10 @@
     "pk": 39,
     "fields": {
         "summary": "twenty one",
-        "description": "sdgregsdfg",
+        "description": "twenty one",
         "status": 2,
         "create_at": "2022-01-20T12:34:29.441Z",
-        "update_at": "2022-01-23T14:43:34.680Z",
+        "update_at": "2022-01-24T06:18:13.211Z",
         "type_names": [
             5
         ]
