@@ -15,4 +15,7 @@
          *** <a href="{% url 'update_issue_view' i.pk %}">Изменить</a> |
         <a href="{% url 'issue_delete_view' i.pk %}">Удалить</a></p>
     {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock %}

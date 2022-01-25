@@ -1,27 +1,57 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, ListView
 
 from webapp.forms import IssueForm, SearchForm
 from .models import Issue, Status, Type
 from webapp.base import FormView as CustomFormView
 
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
+# class IndexView(TemplateView):
+#     template_name = 'index.html'
+#
+#     def get_context_data(self, **kwargs):
+#         issues = Issue.objects.all()
+#         kwargs['issues'] = issues
+#         form = SearchForm()
+#         kwargs['form'] = form
+#         if self.request.GET.get('search'):
+#             issues = Issue.objects.filter(summary__icontains=self.request.GET.get('search'))
+#             kwargs['issues'] = issues
+#         return kwargs
 
-    def get_context_data(self, **kwargs):
-        issues = Issue.objects.all()
-        kwargs['issues'] = issues
-        form = SearchForm()
-        kwargs['form'] = form
+class IndexView(ListView):
+    template_name = 'index.html'
+    model = Issue
+    context_object_name = 'issues'
+    paginate_by = 10
+    paginate_orphans = 2
+
+    # def get(self, request, *args, **kwargs):
+    #     form = self.get_form()
+    #     search_value = self.get_search_value()
+    #     return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        kwargs = super().get_context_data(object_list=object_list, **kwargs)
+        kwargs['form'] = SearchForm()
         if self.request.GET.get('search'):
-            issues = Issue.objects.filter(summary__icontains=self.request.GET.get('search'))
+            issues = Issue.objects.filter(
+                Q(summary__icontains=self.request.GET.get('search')) |
+                Q(description__icontains=self.request.GET.get('search')))
             kwargs['issues'] = issues
         return kwargs
+
+    # def get_form(self):
+    #     return SearchForm(self.request.GET)
+
+    # def get_search_value(self):
+    #     if self.form.is_valid:
+    #         return self.form.cleaned_data.get('search')
 
 
 class IssueView(TemplateView):
