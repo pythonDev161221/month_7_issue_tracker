@@ -406,5 +406,34 @@
             5
         ]
     }
+},
+{
+    "model": "webapp.issue",
+    "pk": 41,
+    "fields": {
+        "summary": "twenty two",
+        "description": "asdf asdf asdf asdf",
+        "status": 2,
+        "create_at": "2022-01-25T14:40:48.994Z",
+        "update_at": "2022-01-25T14:40:48.994Z",
+        "type_names": [
+            5
+        ]
+    }
+},
+{
+    "model": "webapp.issue",
+    "pk": 42,
+    "fields": {
+        "summary": "twenty three",
+        "description": "dasf sdf asdf asldk asld a",
+        "status": 4,
+        "create_at": "2022-01-25T14:41:11.859Z",
+        "update_at": "2022-01-25T14:41:11.859Z",
+        "type_names": [
+            1,
+            6
+        ]
+    }
 }
 ]
