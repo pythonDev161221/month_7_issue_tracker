@@ -34,6 +34,7 @@ class IndexView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         kwargs = super().get_context_data(object_list=object_list, **kwargs)
         kwargs['form'] = SearchForm()
+        kwargs['project_pk'] = self.kwargs.get('project_pk')
         if self.search_value:
             kwargs['search'] = self.search_value
         return kwargs
