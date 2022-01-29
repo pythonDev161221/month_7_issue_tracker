@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import TemplateView, FormView, ListView
 
 from webapp.forms import IssueForm, SearchForm
-from .models import Issue, Status, Type
+from webapp.models import Issue, Status, Type
 from webapp.base import FormView as CustomFormView
 
 
