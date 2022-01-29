@@ -12,7 +12,7 @@ from webapp.base import FormView as CustomFormView
 
 
 class IndexView(ListView):
-    template_name = 'index.html'
+    template_name = 'issues/index.html'
     model = Issue
     context_object_name = 'issues'
     paginate_by = 10
@@ -47,7 +47,7 @@ class IndexView(ListView):
 
 
 class IssueView(TemplateView):
-    template_name = 'issue_view.html'
+    template_name = 'issues/issue_view.html'
 
     def get_context_data(self, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
@@ -56,7 +56,7 @@ class IssueView(TemplateView):
 
 
 class AddIssueView(CustomFormView):
-    template_name = 'add_issue_view.html'
+    template_name = 'issues/add_issue_view.html'
     form_class = IssueForm
 
     def form_valid(self, form):
@@ -75,7 +75,7 @@ class AddIssueView(CustomFormView):
 
 class UpdateIssueView(FormView):
     form_class = IssueForm
-    template_name = 'update_issue_view.html'
+    template_name = 'issues/update_issue_view.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.issue = self.get_object()
@@ -105,7 +105,7 @@ class UpdateIssueView(FormView):
 class IssueDeleteView(View):
     def get(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        return render(request, 'issue_delete.html', {'issue': issue})
+        return render(request, 'issues/issue_delete.html', {'issue': issue})
 
     def post(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
