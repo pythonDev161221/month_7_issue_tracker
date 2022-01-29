@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import TemplateView, FormView, ListView, DetailView
 
 from webapp.forms import IssueForm, SearchForm
 from webapp.models import Issue, Status, Type
@@ -46,13 +46,25 @@ class IndexView(ListView):
             return self.form.cleaned_data.get('search')
 
 
-class IssueView(TemplateView):
+# class IssueView(TemplateView):
+#     template_name = 'issues/issue_view.html'
+# 
+#     def get_context_data(self, **kwargs):
+#         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
+#         kwargs['issue'] = issue
+#         return super().get_context_data(**kwargs)
+    
+class IssueView(DetailView):
     template_name = 'issues/issue_view.html'
+    model = Issue
 
     def get_context_data(self, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        kwargs['issue'] = issue
-        return super().get_context_data(**kwargs)
+        kwargs['issue'] = self.get_object()
+        return super(IssueView, self).get_context_data(**kwargs)
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('issue_pk')
+        return get_object_or_404(self.model, pk=pk)
 
 
 class AddIssueView(CustomFormView):
