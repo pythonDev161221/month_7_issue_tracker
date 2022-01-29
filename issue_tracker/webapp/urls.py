@@ -1,7 +1,10 @@
 from django.urls import path
 from .views import IndexView, IssueView, AddIssueView, UpdateIssueView, IssueDeleteView
+from .views.projects import ProjectListView
+
 urlpatterns = [
-    path('', IndexView.as_view(), name='index_view'),
+    path('', ProjectListView.as_view()),
+    path('issue/', IndexView.as_view(), name='index_view'),
     path('issue/<int:issue_pk>/detail/', IssueView.as_view(), name='issue_view'),
     path('issue/add/', AddIssueView.as_view(), name='add_issue_view'),
     path('issue/<int:issue_pk>/update/', UpdateIssueView.as_view(), name='update_issue_view'),

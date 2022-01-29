@@ -44,7 +44,7 @@ class Issue(models.Model):
     #                                    through_fields=('issue', 'type_name'),
     #                                    blank=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
-    # projects = models.ForeignKey('webapp.Project', related_name='issues')
+    projects = models.ForeignKey('webapp.Project', related_name='issues', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.summary}'
