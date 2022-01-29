@@ -61,6 +61,7 @@ class IssueView(DetailView):
 
     def get_context_data(self, **kwargs):
         kwargs['issue'] = self.get_object()
+        kwargs['project_pk'] = self.kwargs.get('project_pk')
         return super(IssueView, self).get_context_data(**kwargs)
 
     # def get_context_data(self, **kwargs):
@@ -87,7 +88,7 @@ class AddIssueView(CustomFormView):
         return super().form_valid(form)
 
     def get_redirect_url(self):
-        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
+        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.kwargs.get('project_pk')})
 
 
 class UpdateIssueView(FormView):
@@ -122,9 +123,10 @@ class UpdateIssueView(FormView):
 class IssueDeleteView(View):
     def get(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        return render(request, 'issues/issue_delete.html', {'issue': issue})
+        project_pk = kwargs.get('project_pk')
+        return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
 
     def post(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         issue.delete()
-        return redirect('index_view')
+        return redirect('index_view', project_pk=kwargs.get('project_pk'))
