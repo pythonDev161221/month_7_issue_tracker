@@ -44,6 +44,14 @@ class Issue(models.Model):
     #                                    through_fields=('issue', 'type_name'),
     #                                    blank=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
+    # projects = models.ForeignKey('webapp.Project', related_name='issues')
 
     def __str__(self):
         return f'{self.summary}'
+
+
+class Project(models.Model):
+    start_date = models.DateField()
+    finish_date = models.DateField(null=True, blank=True)
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=2000)

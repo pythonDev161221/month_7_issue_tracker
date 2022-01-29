@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Issue, Type, Status
+from .models import Issue, Type, Status, Project
 
 
 # Register your models here.
@@ -39,3 +39,4 @@ admin.site.register(Status, StatusAdmin)
 
 
 # admin.site.register(IssueType, IssueTypeAdmin)
+admin.site.register(Project)

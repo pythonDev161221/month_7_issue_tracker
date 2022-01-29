@@ -62,6 +62,10 @@ class IssueView(DetailView):
         kwargs['issue'] = self.get_object()
         return super(IssueView, self).get_context_data(**kwargs)
 
+    # def get_context_data(self, **kwargs):
+    #     kwargs['issue'] = get_object_or_404(self.model, pk=self.kwargs.get('issue_pk'))
+    #     return super(IssueView, self).get_context_data(**kwargs)
+
     def get_object(self, queryset=None):
         pk = self.kwargs.get('issue_pk')
         return get_object_or_404(self.model, pk=pk)
