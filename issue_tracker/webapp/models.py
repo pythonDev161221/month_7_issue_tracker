@@ -55,3 +55,6 @@ class Project(models.Model):
     finish_date = models.DateField(null=True, blank=True)
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
+
+    def __str__(self):
+        return f'{self.name, self.finish_date}'

@@ -37,3 +37,9 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = []
+
+
+class ProjectIssueCreateForm(forms.ModelForm):
+    class Meta:
+        model = Issue
+        exclude = ['project']

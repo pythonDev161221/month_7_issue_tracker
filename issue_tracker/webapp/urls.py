@@ -1,10 +1,13 @@
 from django.urls import path
 from .views import IndexView, IssueView, AddIssueView, UpdateIssueView, IssueDeleteView
-from .views.projects import ProjectListView, ProjectCreateView
+from .views.projects import ProjectListView, ProjectCreateView, ProjectDetailView, CreateIssueView
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='project_list_view'),
     path('project/create', ProjectCreateView.as_view(), name='project_create_view'),
+    path('project/<int:pk>', ProjectDetailView.as_view(), name='project_detail_view'),
+    path('project/<int:pk>/issue/create', CreateIssueView.as_view(), name='CreateIssueView'),
+
     path('issue/<int:project_pk>/', IndexView.as_view(), name='index_view'),
     path('project/<int:project_pk>/issue/<int:issue_pk>/detail/', IssueView.as_view(),
          name='issue_view'),

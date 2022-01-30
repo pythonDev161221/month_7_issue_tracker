@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'CreateIssueView' project.pk %}">Добавить задание</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<h2>{{ project.name }}</h2>
+   <p>{{ project.description }}</p>
+    <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
+    {% for issue in project.issues.all %}
+        <div>
+            {{ issue.summary }}: {{ issue.description }}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -2,7 +2,7 @@
 
 {% block nav %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'project_create_view' %}">Добавить задание</a>
+  <a class="nav-link" href="{% url 'project_create_view' %}">Добавить проект</a>
 </li>
 {% endblock %}
 
@@ -10,7 +10,7 @@
 {% block content %}
     {% for project in projects %}
         <div>
-            <a href="{% url 'index_view' project.pk %}">{{ project.name }}{{ project.description }}</a>
+            <a href="{% url 'project_detail_view' project.pk %}">{{ project.name }}{{ project.description }}</a>
         </div>
     {% endfor %}
 {% endblock %}
