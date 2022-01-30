@@ -25,6 +25,8 @@ class IndexView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        query_that_project_issue = Q(project__exact=self.kwargs.get('project_pk'))
+        queryset = queryset.filter(query_that_project_issue)
         if self.request.GET.get('search'):
             query = Q(summary__icontains=self.request.GET.get('search')) | \
                     Q(description__icontains=self.request.GET.get('search'))

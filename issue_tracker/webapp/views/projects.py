@@ -1,5 +1,5 @@
 from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
@@ -19,3 +19,6 @@ class ProjectCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('project_list_view')
+
+class ProjectUpdateView(UpdateView):
+    pass
