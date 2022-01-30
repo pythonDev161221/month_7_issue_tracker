@@ -88,7 +88,7 @@ class AddIssueView(CustomFormView):
         return super().form_valid(form)
 
     def get_redirect_url(self):
-        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.kwargs.get('project_pk')})
+        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.issue.project.pk})
 
 
 class UpdateIssueView(FormView):
@@ -117,7 +117,7 @@ class UpdateIssueView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk})
+        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.issue.project.pk})
 
 
 class IssueDeleteView(View):
