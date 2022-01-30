@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView, DetailView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView
 
 from webapp.forms import IssueForm, SearchForm
 from webapp.models import Issue, Status, Type
@@ -89,6 +89,23 @@ class AddIssueView(CustomFormView):
 
     def get_redirect_url(self):
         return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.issue.project.pk})
+
+# class AddIssueView(CreateView):
+#     model = Issue
+#     template_name = 'issues/add_issue_view.html'
+#     form_class = IssueForm
+#
+#
+#     def form_valid(self, form):
+#         data = {}
+#         type_names = form.cleaned_data.pop('type_names')
+#         for key, value in form.cleaned_data.items():
+#             if value is not None:
+#                 data[key] = value
+#         self.issue = Issue.objects.create(**data)
+#         self.issue.type_names.set(type_names)
+#         return super().form_valid(form)
+
 
 
 class UpdateIssueView(FormView):

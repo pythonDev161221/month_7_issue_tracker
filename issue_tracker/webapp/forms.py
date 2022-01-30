@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Type, Status, Issue
+from .models import Type, Status, Issue, Project
 
 
 # class IssueForm(forms.Form):
@@ -32,3 +32,8 @@ class IssueForm(forms.ModelForm):
             raise ValidationError('Description should not duplicate title')
         return cleaned_data
 
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        exclude = []
