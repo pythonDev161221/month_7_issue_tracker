@@ -27,30 +27,22 @@ class ProjectDetailView(DetailView):
     context_object_name = 'project'
     template_name = 'projects/project_detail_view.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(ProjectDetailView, self).get_context_data(**kwargs)
-    #     return context
 
-
-class CreateIssueView(CreateView):
-    model = Issue
-    template_name = 'projects/create_issue_view.html'
-    form_class = ProjectIssueCreateForm
-
-    def form_valid(self, form):
-        print('valid')
-        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
-        issue = form.save(commit=False)
-        issue.project = project
-        issue.save()
-        return super(CreateIssueView, self).form_valid(form)
-
-    # def form_invalid(self, form):
-    #     print('invalid')
-    #     return super(CreateIssueView, self).form_invalid(form)
-
-    def get_success_url(self):
-        return reverse('project_list_view')
+# class CreateIssueView(CreateView):
+#     model = Issue
+#     template_name = 'projects/create_issue_view.html'
+#     form_class = ProjectIssueCreateForm
+#
+#     def form_valid(self, form):
+#         print('valid')
+#         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+#         issue = form.save(commit=False)
+#         issue.project = project
+#         issue.save()
+#         return super(CreateIssueView, self).form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse('project_list_view')
 
 
 
