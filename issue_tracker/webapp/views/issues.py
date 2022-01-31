@@ -31,6 +31,7 @@ class IssueUpdateView(UpdateView):
     model = Issue
     template_name = 'issues/issue_update_view.html'
     form_class = IssueForm
+    pk_url_kwarg = 'issue_pk'
 
     def get_success_url(self):
         return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
@@ -46,11 +47,13 @@ class IssueDeleteView(View):
         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
         issue.delete()
         return redirect('project_list_view')
+        # project_pk = kwargs.get('project_pk')
+        # return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
 
 class IssueDetailView(DetailView):
-    print('issueDetailView')
     template_name = 'issues/issue_detail_view.html'
     model = Issue
+    pk_url_kwarg = 'issue_pk'
     context_object_name = 'issue'
 
 # class IssueView(DetailView):

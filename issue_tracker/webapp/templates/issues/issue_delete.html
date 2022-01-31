@@ -11,5 +11,5 @@ Delete page
         {% csrf_token %}
         <input type="submit" value="Да">
     </form>
-    <a href="{% url 'index_view' project_pk %}">Нет</a>
+    <a href="{% url 'project_detail_view' project_pk %}">Нет</a>
 {% endblock %}

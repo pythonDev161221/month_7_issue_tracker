@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
-
+{% block nav %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'issue_update_view' issue.project.pk issue.pk %}">Изменить задание</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'issue_delete_view' issue.project.pk issue.pk %}">Удалить задание</a>
+</li>
+{% endblock %}
 {% block content %}
-{{ issue.summary }}
+    <h2>Страница задачи</h2>
+    <p>project: {{ issue.project.name }}</p>
+    <p>title: {{ issue.summary }}</p>
+    <p>description: {{ issue.description }}</p>
+    <p>status: {{ issue.status }}</p>
+
+<h3>Типы</h3>
+    <p>{% for type in issue.type_names.all %}{{ type.name }}
+    {% if not forloop.last %}, {% endif %} {% endfor %}.</p>
 {% endblock %}
