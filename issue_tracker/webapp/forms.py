@@ -27,3 +27,7 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = []
+        widgets = {
+            'start_date': forms.SelectDateWidget,
+            'finish_date': forms.SelectDateWidget,
+        }
