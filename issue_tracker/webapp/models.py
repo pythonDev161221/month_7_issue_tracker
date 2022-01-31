@@ -33,7 +33,7 @@ class Issue(models.Model):
     summary = models.CharField(max_length=200, null=False, blank=False,
                                validators=(MinLengthValidator(5, 'it should not be less then 5 character'),))
     description = models.TextField(max_length=2000, null=True, blank=True,
-                                   validators=(MinLengthValidator(10),), )
+                                   validators=(MinLengthValidator(1),), )
     status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT,
                                validators=(), )
     create_at = models.DateTimeField(auto_now_add=True)

@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView, UpdateView
 
 from webapp.forms import IssueForm, SearchForm, ProjectIssueCreateForm
 from webapp.models import Issue, Status, Type, Project
@@ -98,42 +98,47 @@ class CreateIssueView(CreateView):
     form_class = ProjectIssueCreateForm
 
     def form_valid(self, form):
-        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
         issue = form.save(commit=False)
         issue.project = project
         issue.save()
         return super(CreateIssueView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('project_list_view')
+        return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
-class UpdateIssueView(FormView):
-    form_class = IssueForm
-    template_name = 'issues/update_issue_view.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        self.issue = self.get_object()
-        return super(UpdateIssueView, self).dispatch(request, *args, **kwargs)
+class IssueUpdateView(UpdateView):
+    pass
 
-    def get_object(self):
-        return get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['issue'] = self.issue
-        return context
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['instance'] = self.issue
-        return kwargs
-
-    def form_valid(self, form):
-        self.issue = form.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.issue.project.pk})
+# class UpdateIssueView(FormView):
+#     form_class = IssueForm
+#     template_name = 'issues/update_issue_view.html'
+#
+#     def dispatch(self, request, *args, **kwargs):
+#         self.issue = self.get_object()
+#         return super(UpdateIssueView, self).dispatch(request, *args, **kwargs)
+#
+#     def get_object(self):
+#         return get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['issue'] = self.issue
+#         return context
+#
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         kwargs['instance'] = self.issue
+#         return kwargs
+#
+#     def form_valid(self, form):
+#         self.issue = form.save()
+#         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse('issue_view', kwargs={'issue_pk': self.issue.pk, 'project_pk': self.issue.project.pk})
 
 
 class IssueDeleteView(View):

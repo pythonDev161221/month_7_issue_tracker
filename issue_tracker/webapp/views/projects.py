@@ -26,6 +26,7 @@ class ProjectDetailView(DetailView):
     model = Project
     context_object_name = 'project'
     template_name = 'projects/project_detail_view.html'
+    pk_url_kwarg = 'project_pk'
 
 
 # class CreateIssueView(CreateView):
