@@ -15,7 +15,6 @@ class ProjectListView(ListView):
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectForm
-    # fields = ['start_date', 'finish_date', 'name', 'description']
     template_name = 'projects/project_create_view.html'
 
     def get_success_url(self):
@@ -28,22 +27,6 @@ class ProjectDetailView(DetailView):
     template_name = 'projects/project_detail_view.html'
     pk_url_kwarg = 'project_pk'
 
-
-# class CreateIssueView(CreateView):
-#     model = Issue
-#     template_name = 'projects/create_issue_view.html'
-#     form_class = ProjectIssueCreateForm
-#
-#     def form_valid(self, form):
-#         print('valid')
-#         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
-#         issue = form.save(commit=False)
-#         issue.project = project
-#         issue.save()
-#         return super(CreateIssueView, self).form_valid(form)
-#
-#     def get_success_url(self):
-#         return reverse('project_list_view')
 
 
 

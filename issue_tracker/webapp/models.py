@@ -38,11 +38,6 @@ class Issue(models.Model):
                                validators=(), )
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-
-    # type_names_old = models.ManyToManyField('webapp.Type', related_name='issues_old',
-    #                                    through='webapp.IssueType',
-    #                                    through_fields=('issue', 'type_name'),
-    #                                    blank=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
     project = models.ForeignKey('webapp.Project', related_name='issues', on_delete=models.CASCADE)
 

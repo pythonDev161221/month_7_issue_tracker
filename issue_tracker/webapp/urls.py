@@ -13,11 +13,4 @@ urlpatterns = [
          name='issue_delete_view'),
     path('project/issue/<int:issue_pk>/detail/', IssueDetailView.as_view(),
          name='issue_detail_view'),
-    # path('issue/<int:project_pk>/', IndexView.as_view(), name='index_view'),
-
-    # path('issue/add/', AddIssueView.as_view(), name='add_issue_view'),
-    # path('issue/<int:issue_pk>/update/', IssueUpdateView.as_view(),
-    #      name='update_issue_view'),
-
-    # path('issue/search/', SearchView.as_view(), name='search_view')
 ]
