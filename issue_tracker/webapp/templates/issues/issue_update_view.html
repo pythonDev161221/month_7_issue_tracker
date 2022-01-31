@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block nav %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'project_detail_view' issue.project.pk %}">Проект</a>
+</li>
+{% endblock %}
+
 {% block content %}
 <form action="{% url 'issue_update_view' issue.project.pk issue.pk %}"
       method="post">{% csrf_token %}
