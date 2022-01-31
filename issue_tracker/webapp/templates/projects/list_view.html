@@ -13,4 +13,7 @@
             <a href="{% url 'project_detail_view' project.pk %}">{{ project.name }}{{ project.description }}</a>
         </div>
     {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock %}

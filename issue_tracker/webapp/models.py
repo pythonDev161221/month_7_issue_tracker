@@ -1,8 +1,9 @@
-from django.core.validators import MinLengthValidator, MaxLengthValidator, EmailValidator
+# from django.core.validators import
 from django.db import models
 
 # Create your models here.
-import webapp.models
+# import webapp.models
+from webapp.validatiors import MinLengthValidator
 
 
 class BaseStr(models.Model):
