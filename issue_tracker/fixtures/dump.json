@@ -89,9 +89,9 @@
     "fields": {
         "summary": "first summary",
         "description": "first description",
-        "status": 2,
+        "status": 3,
         "create_at": "2022-01-12T11:24:54.409Z",
-        "update_at": "2022-01-29T13:08:40.080Z",
+        "update_at": "2022-01-31T09:56:49.679Z",
         "project": 1,
         "type_names": [
             5,
@@ -104,14 +104,14 @@
     "pk": 2,
     "fields": {
         "summary": "second issues",
-        "description": "222222222222222  22222",
-        "status": 2,
+        "description": "222222222222222  22222222",
+        "status": 3,
         "create_at": "2022-01-12T11:40:57.573Z",
-        "update_at": "2022-01-17T10:25:58.879Z",
+        "update_at": "2022-01-31T10:06:15.465Z",
         "project": 1,
         "type_names": [
             1,
-            6
+            5
         ]
     }
 },
@@ -446,247 +446,13 @@
 },
 {
     "model": "webapp.issue",
-    "pk": 42,
-    "fields": {
-        "summary": "twenty three",
-        "description": "dasf sdf asdf asldk asld a",
-        "status": 4,
-        "create_at": "2022-01-25T14:41:11.859Z",
-        "update_at": "2022-01-25T14:41:11.859Z",
-        "project": 1,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 47,
-    "fields": {
-        "summary": "zsrgsdgr",
-        "description": "dgxbgdg xdv xf",
-        "status": 2,
-        "create_at": "2022-01-29T17:17:47.032Z",
-        "update_at": "2022-01-29T17:17:47.032Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 48,
-    "fields": {
-        "summary": "dzfgsdgr",
-        "description": "dfgsdrgdfxg",
-        "status": 2,
-        "create_at": "2022-01-29T17:35:08.005Z",
-        "update_at": "2022-01-29T17:35:08.005Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 49,
-    "fields": {
-        "summary": "dzfgsdgr",
-        "description": "dfgsdrgdfxg",
-        "status": 2,
-        "create_at": "2022-01-29T17:41:21.276Z",
-        "update_at": "2022-01-29T17:41:21.277Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 50,
-    "fields": {
-        "summary": "fxthfth",
-        "description": "xfthxfthcfghf",
-        "status": 3,
-        "create_at": "2022-01-29T17:44:14.717Z",
-        "update_at": "2022-01-29T17:47:17.235Z",
-        "project": 1,
-        "type_names": [
-            1
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 52,
-    "fields": {
-        "summary": "dvzxcv",
-        "description": "cvbxcvbxxcvbx",
-        "status": 4,
-        "create_at": "2022-01-30T02:25:10.862Z",
-        "update_at": "2022-01-30T02:25:10.862Z",
-        "project": 1,
-        "type_names": [
-            1
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 53,
-    "fields": {
-        "summary": "dvzxcvbgxfb",
-        "description": "cvbxcvbxxcvbxxfgb",
-        "status": 4,
-        "create_at": "2022-01-30T02:27:51.573Z",
-        "update_at": "2022-01-30T02:32:07.745Z",
-        "project": 1,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 55,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:10:42.250Z",
-        "update_at": "2022-01-30T03:10:42.250Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 56,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:10:42.257Z",
-        "update_at": "2022-01-30T03:10:42.257Z",
-        "project": 1,
-        "type_names": []
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 57,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:11:28.795Z",
-        "update_at": "2022-01-30T03:11:28.795Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 58,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:11:28.806Z",
-        "update_at": "2022-01-30T03:11:28.806Z",
-        "project": 1,
-        "type_names": []
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 59,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:11:32.802Z",
-        "update_at": "2022-01-30T03:11:32.802Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 60,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:11:32.814Z",
-        "update_at": "2022-01-30T03:11:32.814Z",
-        "project": 1,
-        "type_names": []
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 61,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:15:58.178Z",
-        "update_at": "2022-01-30T03:15:58.178Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 62,
-    "fields": {
-        "summary": "zdfbxfbfxb",
-        "description": "bdzfbcxvbxcvbdfb",
-        "status": 3,
-        "create_at": "2022-01-30T03:15:58.191Z",
-        "update_at": "2022-01-30T03:15:58.191Z",
-        "project": 1,
-        "type_names": []
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 63,
-    "fields": {
-        "summary": "dfgsgr",
-        "description": "fdsgrgsdfg sdf gdg",
-        "status": 2,
-        "create_at": "2022-01-30T03:18:37.324Z",
-        "update_at": "2022-01-30T03:18:37.324Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
     "pk": 64,
     "fields": {
         "summary": "first in second project",
-        "description": "dfghrtsdzsrgs",
+        "description": "sefdfghrtsdzsrgsasdf",
         "status": 3,
         "create_at": "2022-01-30T15:52:25.249Z",
-        "update_at": "2022-01-30T15:52:25.249Z",
+        "update_at": "2022-01-31T10:51:15.411Z",
         "project": 2,
         "type_names": [
             1,
@@ -696,79 +462,16 @@
 },
 {
     "model": "webapp.issue",
-    "pk": 65,
+    "pk": 83,
     "fields": {
-        "summary": "drgsdrgdsg",
-        "description": "fdsgsrgdsfgr",
+        "summary": "second",
+        "description": "asdfaesf dsfdfv",
         "status": 3,
-        "create_at": "2022-01-30T17:51:41.716Z",
-        "update_at": "2022-01-30T17:51:41.720Z",
-        "project": 1,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 66,
-    "fields": {
-        "summary": "drgsdrgdsg",
-        "description": "fdsgsrgdsfgr",
-        "status": 3,
-        "create_at": "2022-01-30T17:52:18.604Z",
-        "update_at": "2022-01-30T17:52:18.608Z",
-        "project": 1,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 67,
-    "fields": {
-        "summary": "drgsdrgdsg",
-        "description": "fdsgsrgdsfgr",
-        "status": 3,
-        "create_at": "2022-01-30T17:52:51.545Z",
-        "update_at": "2022-01-30T17:52:51.551Z",
-        "project": 1,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 68,
-    "fields": {
-        "summary": "dzfgsdgr",
-        "description": "gdsdfgsdrg",
-        "status": 2,
-        "create_at": "2022-01-30T17:52:59.941Z",
-        "update_at": "2022-01-30T17:52:59.946Z",
+        "create_at": "2022-01-31T09:57:07.459Z",
+        "update_at": "2022-01-31T10:40:54.621Z",
         "project": 2,
         "type_names": [
             6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 69,
-    "fields": {
-        "summary": "xfthth",
-        "description": "gfhthxfghxfth",
-        "status": 3,
-        "create_at": "2022-01-31T03:23:26.078Z",
-        "update_at": "2022-01-31T03:23:26.083Z",
-        "project": 2,
-        "type_names": [
-            5
         ]
     }
 },
@@ -800,6 +503,16 @@
         "finish_date": "2022-01-31",
         "name": "sdfgrg",
         "description": "dsfgrdg"
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 4,
+    "fields": {
+        "start_date": "2022-01-29",
+        "finish_date": "2022-01-31",
+        "name": "asefe",
+        "description": "asfeeasdf"
     }
 }
 ]
