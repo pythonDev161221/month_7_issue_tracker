@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView, UpdateView
 
-from webapp.forms import IssueForm, SearchForm, ProjectIssueCreateForm
+from webapp.forms import IssueForm, SearchForm
 from webapp.models import Issue, Status, Type, Project
 from webapp.base import FormView as CustomFormView
 
@@ -95,7 +95,7 @@ class IssueView(DetailView):
 class CreateIssueView(CreateView):
     model = Issue
     template_name = 'issues/create_issue_view.html'
-    form_class = ProjectIssueCreateForm
+    form_class = IssueForm
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))

@@ -21,7 +21,7 @@ class SearchForm(forms.Form):
 class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
-        exclude = []
+        exclude = ['project']
         widgets = {
             'type_names': forms.CheckboxSelectMultiple
         }
@@ -39,7 +39,7 @@ class ProjectForm(forms.ModelForm):
         exclude = []
 
 
-class ProjectIssueCreateForm(forms.ModelForm):
-    class Meta:
-        model = Issue
-        exclude = ['project']
+# class ProjectIssueCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = Issue
+#         exclude = ['project']

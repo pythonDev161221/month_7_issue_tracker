@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, DetailView
 
-from webapp.forms import ProjectForm, ProjectIssueCreateForm
+from webapp.forms import ProjectForm
 from webapp.models import Project, Issue
 
 
