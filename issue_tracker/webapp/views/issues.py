@@ -36,6 +36,44 @@ class IssueUpdateView(UpdateView):
         return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
+class IssueDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
+        project_pk = kwargs.get('project_pk')
+        return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
+
+    def post(self, request, *args, **kwargs):
+        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
+        issue.delete()
+        return redirect('project_list_view')
+
+class IssueDetailView(DetailView):
+    print('issueDetailView')
+    template_name = 'issues/issue_detail_view.html'
+    model = Issue
+    context_object_name = 'issue'
+
+# class IssueView(DetailView):
+#     template_name = 'issues/issue_view.html'
+#     model = Issue
+#
+#     def get_context_data(self, **kwargs):
+#         kwargs['issue'] = self.get_object()
+#         kwargs['project_pk'] = self.kwargs.get('project_pk')
+#         return super(IssueView, self).get_context_data(**kwargs)
+#
+#     # def get_context_data(self, **kwargs):
+#     #     kwargs['issue'] = get_object_or_404(self.model, pk=self.kwargs.get('issue_pk'))
+#     #     return super(IssueView, self).get_context_data(**kwargs)
+#
+#     def get_object(self, queryset=None):
+#         pk = self.kwargs.get('issue_pk')
+#         return get_object_or_404(self.model, pk=pk)
+
+        # return render(request, 'projects/project_detail_view.html', {'project_pk': kwargs.get('project_pk')})
+
+    # , project_pk = kwargs.get('project_pk')
+
 # class UpdateIssueView(FormView):
 #     form_class = IssueForm
 #     template_name = 'issues/update_issue_view.html'
@@ -66,60 +104,45 @@ class IssueUpdateView(UpdateView):
 
 
 
-class IssueView(DetailView):
-    template_name = 'issues/issue_view.html'
-    model = Issue
-
-    def get_context_data(self, **kwargs):
-        kwargs['issue'] = self.get_object()
-        kwargs['project_pk'] = self.kwargs.get('project_pk')
-        return super(IssueView, self).get_context_data(**kwargs)
-
-    # def get_context_data(self, **kwargs):
-    #     kwargs['issue'] = get_object_or_404(self.model, pk=self.kwargs.get('issue_pk'))
-    #     return super(IssueView, self).get_context_data(**kwargs)
-
-    def get_object(self, queryset=None):
-        pk = self.kwargs.get('issue_pk')
-        return get_object_or_404(self.model, pk=pk)
 
 
-class IndexView(ListView):
-    template_name = 'issues/index.html'
-    model = Issue
-    context_object_name = 'issues'
-    paginate_by = 10
-    paginate_orphans = 2
 
-    def get(self, request, *args, **kwargs):
-        self.form = self.get_form()
-        self.search_value = self.get_search_value()
-        return super().get(request, *args, **kwargs)
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query_that_project_issue = Q(project__exact=self.kwargs.get('project_pk'))
-        queryset = queryset.filter(query_that_project_issue)
-        if self.request.GET.get('search'):
-            query = Q(summary__icontains=self.request.GET.get('search')) | \
-                    Q(description__icontains=self.request.GET.get('search'))
-            queryset = queryset.filter(query)
-        return queryset
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        kwargs = super().get_context_data(object_list=object_list, **kwargs)
-        kwargs['form'] = SearchForm()
-        kwargs['project_pk'] = self.kwargs.get('project_pk')
-        if self.search_value:
-            kwargs['search'] = self.search_value
-        return kwargs
-
-    def get_form(self):
-        return SearchForm(self.request.GET)
-
-    def get_search_value(self):
-        if self.form.is_valid():
-            return self.form.cleaned_data.get('search')
+# class IndexView(ListView):
+#     template_name = 'issues/index.html'
+#     model = Issue
+#     context_object_name = 'issues'
+#     paginate_by = 10
+#     paginate_orphans = 2
+#
+#     def get(self, request, *args, **kwargs):
+#         self.form = self.get_form()
+#         self.search_value = self.get_search_value()
+#         return super().get(request, *args, **kwargs)
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         query_that_project_issue = Q(project__exact=self.kwargs.get('project_pk'))
+#         queryset = queryset.filter(query_that_project_issue)
+#         if self.request.GET.get('search'):
+#             query = Q(summary__icontains=self.request.GET.get('search')) | \
+#                     Q(description__icontains=self.request.GET.get('search'))
+#             queryset = queryset.filter(query)
+#         return queryset
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         kwargs = super().get_context_data(object_list=object_list, **kwargs)
+#         kwargs['form'] = SearchForm()
+#         kwargs['project_pk'] = self.kwargs.get('project_pk')
+#         if self.search_value:
+#             kwargs['search'] = self.search_value
+#         return kwargs
+#
+#     def get_form(self):
+#         return SearchForm(self.request.GET)
+#
+#     def get_search_value(self):
+#         if self.form.is_valid():
+#             return self.form.cleaned_data.get('search')
 
 
 # class IssueView(TemplateView):
@@ -159,13 +182,4 @@ class IndexView(ListView):
 
 
 
-class IssueDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        project_pk = kwargs.get('project_pk')
-        return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
 
-    def post(self, request, *args, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        issue.delete()
-        return redirect('index_view', project_pk=kwargs.get('project_pk'))
