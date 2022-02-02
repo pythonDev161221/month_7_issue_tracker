@@ -57,5 +57,8 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
 
+    def get_absolute_url(self):
+        return reverse('project_list_view')
+
     def __str__(self):
         return f'{self.name, self.finish_date}'

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 from webapp.forms import ProjectForm
 from webapp.models import Project, Issue
@@ -27,6 +27,13 @@ class ProjectDetailView(DetailView):
     context_object_name = 'project'
     template_name = 'projects/project_detail_view.html'
     pk_url_kwarg = 'project_pk'
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = 'projects/project_update_view.html'
+    pk_url_kwarg = 'project_pk'
+    form_class = ProjectForm
 
 
 
