@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.views.generic import DetailView, CreateView, UpdateView, ListView
 
 from webapp.forms import IssueForm
 from webapp.models import Issue, Project
@@ -52,6 +52,11 @@ class IssueDetailView(DetailView):
     model = Issue
     pk_url_kwarg = 'issue_pk'
     context_object_name = 'issue'
+
+
+class IssueListView(ListView):
+    template_name = 'issues/issue_list_view.html'
+    model = Issue
 
 
 

@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 # import webapp.models
+from django.urls import reverse
+
 from webapp.validatiors import MinLengthValidator
 
 
@@ -41,6 +43,9 @@ class Issue(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
     project = models.ForeignKey('webapp.Project', related_name='issues', on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('issue_list_view')
 
     def __str__(self):
         return f'{self.summary}'
