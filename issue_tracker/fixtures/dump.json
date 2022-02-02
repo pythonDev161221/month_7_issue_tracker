@@ -445,59 +445,13 @@
     }
 },
 {
-    "model": "webapp.issue",
-    "pk": 64,
-    "fields": {
-        "summary": "first in second project",
-        "description": "sefdfghrtsdzsrgsasdf",
-        "status": 3,
-        "create_at": "2022-01-30T15:52:25.249Z",
-        "update_at": "2022-01-31T10:51:15.411Z",
-        "project": 2,
-        "type_names": [
-            1,
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 83,
-    "fields": {
-        "summary": "second",
-        "description": "asdfaesf dsfdfv",
-        "status": 3,
-        "create_at": "2022-01-31T09:57:07.459Z",
-        "update_at": "2022-01-31T10:40:54.621Z",
-        "project": 2,
-        "type_names": [
-            6
-        ]
-    }
-},
-{
-    "model": "webapp.issue",
-    "pk": 91,
-    "fields": {
-        "summary": "sfefsef",
-        "description": "sfeffe",
-        "status": 3,
-        "create_at": "2022-01-31T11:44:43.371Z",
-        "update_at": "2022-01-31T11:44:43.376Z",
-        "project": 1,
-        "type_names": [
-            5
-        ]
-    }
-},
-{
     "model": "webapp.project",
     "pk": 1,
     "fields": {
         "start_date": "2022-01-29",
         "finish_date": "2022-01-31",
         "name": "Januery days",
-        "description": "adsf asdf af df"
+        "description": "first project"
     }
 },
 {
@@ -507,7 +461,7 @@
         "start_date": "2022-01-29",
         "finish_date": "2022-01-31",
         "name": "second form",
-        "description": "asdf"
+        "description": "asdff"
     }
 },
 {
@@ -517,7 +471,7 @@
         "start_date": "2022-01-29",
         "finish_date": "2022-01-31",
         "name": "sdfgrg",
-        "description": "dsfgrdg"
+        "description": "dsfgrdggffg"
     }
 },
 {
@@ -532,22 +486,12 @@
 },
 {
     "model": "webapp.project",
-    "pk": 5,
+    "pk": 7,
     "fields": {
         "start_date": "2022-01-01",
-        "finish_date": "2026-01-03",
-        "name": "adsaf",
-        "description": "asdf"
-    }
-},
-{
-    "model": "webapp.project",
-    "pk": 6,
-    "fields": {
-        "start_date": "2022-01-01",
-        "finish_date": "2024-06-04",
-        "name": "superproject",
-        "description": "asdf asdf dsafa sdf"
+        "finish_date": "2023-01-03",
+        "name": "def",
+        "description": "srgrfgre"
     }
 }
 ]

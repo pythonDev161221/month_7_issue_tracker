@@ -2,7 +2,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
-from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView
 
 from webapp.forms import IssueForm
