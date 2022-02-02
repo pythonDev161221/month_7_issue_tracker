@@ -14,7 +14,8 @@
     {% for project in projects %}
         <div>
             <a href="{% url 'project_detail_view' project.pk %}">{{ project.name }}{{ project.description }}</a>
-            *** <a href="{% url 'project_update_view' project.pk %}">Изменить</a>
+            *** <a href="{% url 'project_update_view' project.pk %}">Изменить</a> |
+            <a href="{% url 'project_delete_view' project.pk %}">Удалить</a>
         </div>
     {% endfor %}
     {% if is_paginated %}

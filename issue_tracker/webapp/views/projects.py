@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from webapp.forms import ProjectForm
 from webapp.models import Project, Issue
@@ -36,6 +36,10 @@ class ProjectUpdateView(UpdateView):
     form_class = ProjectForm
 
 
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'projects/project_delete_view.html'
+    pk_url_kwarg = 'project_pk'
 
-
-
+    def get_success_url(self):
+        return reverse('project_list_view')

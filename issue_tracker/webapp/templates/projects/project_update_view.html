@@ -2,8 +2,9 @@
 
 {% block content %}
     <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-    </form>
+    {% include 'partial/issue_form.html' with button_text='Изменить' %}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <input type="submit" value="Update">#}
+{#    </form>#}
 {% endblock %}
