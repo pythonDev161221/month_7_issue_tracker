@@ -12,9 +12,9 @@ Delete page
 {% block content %}
 
 <h2>Вы точно хотите удалить задание {{ issue.summary }}</h2>
-    <form action="{% url 'issue_delete_view' project_pk issue.pk %}" method="post">
+    <form action="{% url 'issue_delete_view' issue.project.pk issue.pk %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Да">
     </form>
-    <a href="{% url 'project_detail_view' project_pk %}">Нет</a>
+    <a href="{% url 'project_detail_view' issue.project.pk  %}">Нет</a>
 {% endblock %}

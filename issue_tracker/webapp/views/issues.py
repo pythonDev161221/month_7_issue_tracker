@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DetailView, CreateView, UpdateView, ListView
+from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView
 
 from webapp.forms import IssueForm
 from webapp.models import Issue, Project
@@ -35,16 +35,24 @@ class IssueUpdateView(UpdateView):
         return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
-class IssueDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        project_pk = kwargs.get('project_pk')
-        return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
+# class IssueDeleteView(View):
+#     def get(self, request, *args, **kwargs):
+#         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
+#         project_pk = kwargs.get('project_pk')
+#         return render(request, 'issues/issue_delete.html', {'issue': issue, 'project_pk': project_pk})
+#
+#     def post(self, request, *args, **kwargs):
+#         issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
+#         issue.delete()
+#         return redirect('project_list_view')
 
-    def post(self, request, *args, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('issue_pk'))
-        issue.delete()
-        return redirect('project_list_view')
+class IssueDeleteView(DeleteView):
+    template_name = 'issues/issue_delete.html'
+    model = Issue
+    pk_url_kwarg = 'issue_pk'
+
+    def get_success_url(self):
+        return reverse('project_list_view')
 
 
 class IssueDetailView(DetailView):
