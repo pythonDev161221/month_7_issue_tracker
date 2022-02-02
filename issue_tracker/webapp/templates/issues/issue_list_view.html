@@ -7,8 +7,9 @@
 {% block content %}
 {% for issue in issue_list %}
     <div>
-    {{ issue.summary }}: "{{ issue.description }}"
+        <a href="{% url 'issue_detail_view' issue.pk %}">{{ issue.summary }}: "{{ issue.description }}"</a> ***
+        <a href="{% url 'issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
+        <a href="{% url 'issue_delete_view' issue.project.pk issue.pk %}">Удалить</a>
     </div>
-
 {% endfor %}
 {% endblock %}
