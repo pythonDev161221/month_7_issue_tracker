@@ -58,8 +58,6 @@ class IssueDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('project_list_view')
-        # issue = get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
-        # return reverse('project_detail_view', kwargs={'pk': issue.project.pk})
 
 
 class IssueDetailView(DetailView):
