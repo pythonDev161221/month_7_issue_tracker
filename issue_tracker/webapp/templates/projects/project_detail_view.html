@@ -13,16 +13,13 @@
 <h2>{{ project.name }}</h2>
    <p>{{ project.description }}</p>
     <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
-    {% for issue in project.issues.all %}
+    {% for issue in issues %}
         <div>
             <a href="{% url 'issue_detail_view' issue.pk %}">
                 {{ issue.summary }}: {{ issue.description }}
             </a> ***
             <a href="{% url 'issue_update_view' project.pk issue.pk %}">Изменить</a> |
         <a href="{% url 'issue_delete_view' project.pk issue.pk %}">Удалить</a></p>
-
-
         </div>
-
     {% endfor %}
 {% endblock %}

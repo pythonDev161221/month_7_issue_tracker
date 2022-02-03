@@ -11,7 +11,7 @@ class SearchForm(forms.Form):
 class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
-        exclude = ['project']
+        exclude = ['project', 'is_deleted']
         widgets = {
             'type_names': forms.CheckboxSelectMultiple
         }

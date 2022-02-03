@@ -43,6 +43,7 @@ class Issue(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     type_names = models.ManyToManyField('webapp.Type', related_name='issues')
     project = models.ForeignKey('webapp.Project', related_name='issues', on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('issue_list_view')

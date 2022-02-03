@@ -1,4 +1,4 @@
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
@@ -50,8 +50,16 @@ class IssueDeleteView(DeleteView):
     model = Issue
     pk_url_kwarg = 'issue_pk'
 
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.is_deleted = True
+        self.object.save()
+        return HttpResponseRedirect(success_url)
+
     def get_success_url(self):
         return reverse('project_list_view')
+        # issue = get_object_or_404(Issue, pk=self.kwargs.get('issue_pk'))
+        # return reverse('project_detail_view', kwargs={'pk': issue.project.pk})
 
 
 class IssueDetailView(DetailView):
@@ -65,9 +73,10 @@ class IssueListView(ListView):
     template_name = 'issues/issue_list_view.html'
     model = Issue
 
-
-
-
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_deleted__exact=False)
+        return queryset
 
 
 
