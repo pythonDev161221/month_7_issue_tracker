@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <form action="{% url 'project_create_view' %}" method="post">
+    <form action="{% url 'webapp:project_create_view' %}" method="post">
     {% include 'partial/issue_form.html' with button_text='Сохранить' %}
 {#    {% csrf_token %}#}
 {#    {{ form.as_p }}#}

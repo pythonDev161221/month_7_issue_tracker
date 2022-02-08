@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block nav %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'project_list_view' %}">Все пректы</a>
+  <a class="nav-link" href="{% url 'webapp:project_list_view' %}">Все пректы</a>
 </li>
 {% endblock %}
 {% block content %}
 {% for issue in issue_list %}
     <div>
-        <a href="{% url 'issue_detail_view' issue.pk %}">{{ issue.summary }}: "{{ issue.description }}"</a> ***
-        <a href="{% url 'issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
-        <a href="{% url 'issue_delete_view' issue.project.pk issue.pk %}">Удалить</a>
+        <a href="{% url 'webapp:issue_detail_view' issue.pk %}">{{ issue.summary }}: "{{ issue.description }}"</a> ***
+        <a href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
+        <a href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить</a>
     </div>
 {% endfor %}
 {% endblock %}

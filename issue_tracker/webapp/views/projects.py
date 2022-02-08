@@ -21,7 +21,7 @@ class ProjectCreateView(CreateView):
     template_name = 'projects/project_create_view.html'
 
     def get_success_url(self):
-        return reverse('project_list_view')
+        return reverse('webapp:project_list_view')
 
 
 class ProjectDetailView(DetailView):
@@ -53,4 +53,4 @@ class ProjectDeleteView(DeleteView):
     pk_url_kwarg = 'project_pk'
 
     def get_success_url(self):
-        return reverse('project_list_view')
+        return reverse('webapp:project_list_view')

@@ -46,7 +46,7 @@ class Issue(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('issue_list_view')
+        return reverse('webapp:issue_list_view')
 
     def __str__(self):
         return f'{self.summary}'
@@ -59,7 +59,7 @@ class Project(models.Model):
     description = models.TextField(max_length=2000)
 
     def get_absolute_url(self):
-        return reverse('project_list_view')
+        return reverse('webapp:project_list_view')
 
     def __str__(self):
         return f'{self.name, self.finish_date}'

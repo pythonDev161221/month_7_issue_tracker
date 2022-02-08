@@ -5,16 +5,16 @@ Delete page
 {% endblock %}
 {% block nav %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'project_detail_view' issue.project.pk %}">Проект</a>
+  <a class="nav-link" href="{% url 'webapp:project_detail_view' issue.project.pk %}">Проект</a>
 </li>
 {% endblock %}
 
 {% block content %}
 
 <h2>Вы точно хотите удалить задание {{ issue.summary }}</h2>
-    <form action="{% url 'issue_delete_view' issue.project.pk issue.pk %}" method="post">
+    <form action="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Да">
     </form>
-    <a href="{% url 'project_detail_view' issue.project.pk  %}">Нет</a>
+    <a href="{% url 'webapp:project_detail_view' issue.project.pk  %}">Нет</a>
 {% endblock %}

@@ -2,10 +2,10 @@
 
 {% block nav %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'issue_list_view'%}">Все задачи пректов</a>
+  <a class="nav-link" href="{% url 'webapp:issue_list_view'%}">Все задачи пректов</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'create_issue_view' project.pk %}">Добавить задание</a>
+  <a class="nav-link" href="{% url 'webapp:create_issue_view' project.pk %}">Добавить задание</a>
 </li>
 {% endblock %}
 
@@ -15,11 +15,11 @@
     <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
     {% for issue in issues %}
         <div>
-            <a href="{% url 'issue_detail_view' issue.pk %}">
+            <a href="{% url 'webapp:issue_detail_view' issue.pk %}">
                 {{ issue.summary }}: {{ issue.description }}
             </a> ***
-            <a href="{% url 'issue_update_view' project.pk issue.pk %}">Изменить</a> |
-        <a href="{% url 'issue_delete_view' project.pk issue.pk %}">Удалить</a></p>
+            <a href="{% url 'webapp:issue_update_view' project.pk issue.pk %}">Изменить</a> |
+        <a href="{% url 'webapp:issue_delete_view' project.pk issue.pk %}">Удалить</a></p>
         </div>
     {% endfor %}
 {% endblock %}

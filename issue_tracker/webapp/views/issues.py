@@ -21,7 +21,7 @@ class CreateIssueView(CreateView):
         return super(CreateIssueView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
+        return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
 class IssueUpdateView(UpdateView):
@@ -31,7 +31,7 @@ class IssueUpdateView(UpdateView):
     pk_url_kwarg = 'issue_pk'
 
     def get_success_url(self):
-        return reverse('project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
+        return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
 # class IssueDeleteView(View):
@@ -57,7 +57,7 @@ class IssueDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 
     def get_success_url(self):
-        return reverse('project_list_view')
+        return reverse('webapp:project_list_view')
 
 
 class IssueDetailView(DetailView):
