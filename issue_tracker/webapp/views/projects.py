@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import F
 from django.shortcuts import get_object_or_404
@@ -15,7 +16,7 @@ class ProjectListView(ListView):
     paginate_by = 3
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'projects/project_create_view.html'
@@ -40,14 +41,14 @@ class ProjectDetailView(DetailView):
         return super().get_context_data(**context)
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/project_update_view.html'
     pk_url_kwarg = 'project_pk'
     form_class = ProjectForm
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_delete_view.html'
     pk_url_kwarg = 'project_pk'

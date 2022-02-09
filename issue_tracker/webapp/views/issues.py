@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -8,7 +9,7 @@ from webapp.forms import IssueForm
 from webapp.models import Issue, Project
 
 
-class CreateIssueView(CreateView):
+class CreateIssueView(LoginRequiredMixin, CreateView):
     model = Issue
     template_name = 'issues/create_issue_view.html'
     form_class = IssueForm
@@ -24,7 +25,7 @@ class CreateIssueView(CreateView):
         return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
-class IssueUpdateView(UpdateView):
+class IssueUpdateView(LoginRequiredMixin, UpdateView):
     model = Issue
     template_name = 'issues/issue_update_view.html'
     form_class = IssueForm
@@ -45,7 +46,7 @@ class IssueUpdateView(UpdateView):
 #         issue.delete()
 #         return redirect('project_list_view')
 
-class IssueDeleteView(DeleteView):
+class IssueDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'issues/issue_delete.html'
     model = Issue
     pk_url_kwarg = 'issue_pk'

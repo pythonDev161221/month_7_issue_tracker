@@ -4,9 +4,7 @@
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:issue_list_view' %}">Все задачи</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'webapp:project_create_view' %}">Добавить проект</a>
-</li>
+
 {% endblock %}
 
 
@@ -14,8 +12,10 @@
     {% for project in projects %}
         <div>
             <a href="{% url 'webapp:project_detail_view' project.pk %}">{{ project.name }}{{ project.description }}</a>
+            {% if is_authenticated %}
             *** <a href="{% url 'webapp:project_update_view' project.pk %}">Изменить</a> |
             <a href="{% url 'webapp:project_delete_view' project.pk %}">Удалить</a>
+            {% endif %}
         </div>
     {% endfor %}
     {% if is_paginated %}

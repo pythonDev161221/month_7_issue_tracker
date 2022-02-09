@@ -4,9 +4,11 @@
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:issue_list_view'%}">Все задачи пректов</a>
 </li>
+{% if is_authenticated %}
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:create_issue_view' project.pk %}">Добавить задание</a>
 </li>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -17,9 +19,12 @@
         <div>
             <a href="{% url 'webapp:issue_detail_view' issue.pk %}">
                 {{ issue.summary }}: {{ issue.description }}
-            </a> ***
+            </a>
+            {% if is_authenticated %}
+            ***
             <a href="{% url 'webapp:issue_update_view' project.pk issue.pk %}">Изменить</a> |
         <a href="{% url 'webapp:issue_delete_view' project.pk issue.pk %}">Удалить</a></p>
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}
