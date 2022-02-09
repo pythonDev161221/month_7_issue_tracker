@@ -3,7 +3,7 @@
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:project_detail_view' issue.project.pk %}">Проект</a>
 </li>
-    {% if is_authenticated %}
+    {% if user.is_authenticated %}
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить задание</a>
 </li>

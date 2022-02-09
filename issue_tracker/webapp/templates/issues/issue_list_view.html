@@ -8,7 +8,7 @@
 {% for issue in issue_list %}
     <div>
         <a href="{% url 'webapp:issue_detail_view' issue.pk %}">{{ issue.summary }}: "{{ issue.description }}"</a>
-        {% if is_authenticated %}
+        {% if user.is_authenticated %}
         ***
         <a href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
         <a href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить</a>
