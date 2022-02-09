@@ -71,6 +71,8 @@ class IssueDetailView(DetailView):
 class IssueListView(ListView):
     template_name = 'issues/issue_list_view.html'
     model = Issue
+    paginate_by = 12
+    paginate_orphans = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()
