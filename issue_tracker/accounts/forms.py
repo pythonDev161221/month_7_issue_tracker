@@ -1,7 +1,14 @@
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 
 class MyUserCreateForm(UserCreationForm):
+
+    email = forms.EmailField(
+        label="email",
+    )
+
     class Meta(UserCreationForm.Meta):
         fields = ("username", "password1", "password2", "email", "first_name", "last_name")
 
