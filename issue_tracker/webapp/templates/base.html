@@ -31,14 +31,17 @@
         {% endblock %}
       {% if not user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:login' %}">Войти</a>
+            <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:register' %}?next={{ request.get_full_path }}">Зарегистрироваться</a>
         </li>
       {% else %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'webapp:project_create_view' %}">Добавить проект</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
+            <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выйти</a>
         </li>
       {% endif %}
 
