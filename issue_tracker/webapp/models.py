@@ -1,5 +1,6 @@
 # from django.core.validators import
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 # import webapp.models
@@ -57,11 +58,10 @@ class Project(models.Model):
     finish_date = models.DateField(null=True, blank=True)
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
+    users = models.ManyToManyField(User)
 
     def get_absolute_url(self):
         return reverse('webapp:project_list_view')
 
     def __str__(self):
         return f'{self.name, self.finish_date}'
-
-

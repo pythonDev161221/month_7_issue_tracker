@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for user in project.users.all %}
+        <p>
+        {{ user }}
+        </p>
+    {% endfor %}
+    <a href="{% url 'webapp:project_user_add_view' project.pk %}">Add user</a>
+{% endblock %}

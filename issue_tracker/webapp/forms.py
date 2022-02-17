@@ -31,3 +31,12 @@ class ProjectForm(forms.ModelForm):
             'start_date': forms.SelectDateWidget,
             'finish_date': forms.SelectDateWidget,
         }
+
+
+class ProjectUserForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['users', ]
+        # widgets = {
+        #     'users': forms.MultipleChoiceField
+        # }

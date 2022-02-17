@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from webapp.forms import ProjectForm
+from webapp.forms import ProjectForm, ProjectUserForm
 from webapp.models import Project, Issue
 
 
@@ -56,3 +56,27 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
+
+
+class ProjectUserListView(DetailView):
+    model = Project
+    template_name = 'projects/project_user_list_view.html'
+    pk_url_kwarg = 'project_pk'
+
+    def get_success_url(self):
+        return reverse('webapp:project_list_view')
+
+
+class ProjectUserAddView(UpdateView):
+    model = Project
+    form_class = ProjectUserForm
+    pk_url_kwarg = 'project_pk'
+    template_name = 'projects/project_user_add_view.html'
+
+
+    # def get_success_url(self):
+    #     return reverse('webapp:project_user_list_view',
+    #                    kwargs={'project_pk': self.kwargs.get('project_pk')})
+    def get_success_url(self):
+        return reverse('webapp:project_list_view')
+
