@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -9,10 +9,14 @@ from webapp.forms import IssueForm
 from webapp.models import Issue, Project
 
 
-class CreateIssueView(LoginRequiredMixin, CreateView):
+class CreateIssueView(PermissionRequiredMixin, CreateView):
     model = Issue
     template_name = 'issues/create_issue_view.html'
     form_class = IssueForm
+    permission_required = 'webapp.add_issue'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().author == self.request.user
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
@@ -25,11 +29,15 @@ class CreateIssueView(LoginRequiredMixin, CreateView):
         return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
-class IssueUpdateView(LoginRequiredMixin, UpdateView):
+class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     model = Issue
     template_name = 'issues/issue_update_view.html'
     form_class = IssueForm
     pk_url_kwarg = 'issue_pk'
+    permission_required = 'webapp.change_issue'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().author == self.request.user
 
     def get_success_url(self):
         return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
@@ -46,10 +54,14 @@ class IssueUpdateView(LoginRequiredMixin, UpdateView):
 #         issue.delete()
 #         return redirect('project_list_view')
 
-class IssueDeleteView(LoginRequiredMixin, DeleteView):
+class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'issues/issue_delete.html'
     model = Issue
     pk_url_kwarg = 'issue_pk'
+    permission_required = 'webapp.delete_issue'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().author == self.request.user
 
     def form_valid(self, form):
         success_url = self.get_success_url()

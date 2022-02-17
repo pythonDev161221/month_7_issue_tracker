@@ -52,7 +52,7 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'projects/project_update_view.html'
     pk_url_kwarg = 'project_pk'
     form_class = ProjectForm
-    permission_required = 'webapp.add_project'
+    permission_required = 'webapp.change_project'
 
     def has_permission(self):
         return super().has_permission()
@@ -62,7 +62,7 @@ class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_delete_view.html'
     pk_url_kwarg = 'project_pk'
-    permission_required = 'webapp.add_project'
+    permission_required = 'webapp.delete_project'
 
     def has_permission(self):
         return super().has_permission()
