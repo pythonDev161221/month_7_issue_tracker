@@ -15,8 +15,9 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
     form_class = IssueForm
     permission_required = 'webapp.add_issue'
 
+
     def has_permission(self):
-        return super().has_permission() and self.get_object().author == self.request.user
+        return super().has_permission()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
@@ -37,7 +38,7 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_issue'
 
     def has_permission(self):
-        return super().has_permission() and self.get_object().author == self.request.user
+        return super().has_permission()
 
     def get_success_url(self):
         return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
@@ -61,7 +62,7 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_issue'
 
     def has_permission(self):
-        return super().has_permission() and self.get_object().author == self.request.user
+        return super().has_permission()
 
     def form_valid(self, form):
         success_url = self.get_success_url()
