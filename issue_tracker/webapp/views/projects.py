@@ -80,11 +80,15 @@ class ProjectUserListView(DetailView):
         return reverse('webapp:project_list_view')
 
 
-class ProjectUserAddView(UpdateView):
+class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectUserForm
     pk_url_kwarg = 'project_pk'
     template_name = 'projects/project_user_add_view.html'
+    permission_required = 'webapp.change_project'
+
+    def has_permission(self):
+        return super().has_permission()
 
     def get_success_url(self):
         return reverse('webapp:project_user_list_view',
