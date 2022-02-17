@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import F
 from django.shortcuts import get_object_or_404
@@ -17,10 +17,15 @@ class ProjectListView(ListView):
     paginate_orphans = 1
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(PermissionRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'projects/project_create_view.html'
+
+    permission_required = 'webapp.add_project'
+
+    def has_permission(self):
+        return super().has_permission()
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -42,17 +47,25 @@ class ProjectDetailView(DetailView):
         return super().get_context_data(**context)
 
 
-class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/project_update_view.html'
     pk_url_kwarg = 'project_pk'
     form_class = ProjectForm
+    permission_required = 'webapp.add_project'
+
+    def has_permission(self):
+        return super().has_permission()
 
 
-class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_delete_view.html'
     pk_url_kwarg = 'project_pk'
+    permission_required = 'webapp.add_project'
+
+    def has_permission(self):
+        return super().has_permission()
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -73,10 +86,6 @@ class ProjectUserAddView(UpdateView):
     pk_url_kwarg = 'project_pk'
     template_name = 'projects/project_user_add_view.html'
 
-
-    # def get_success_url(self):
-    #     return reverse('webapp:project_user_list_view',
-    #                    kwargs={'project_pk': self.kwargs.get('project_pk')})
     def get_success_url(self):
-        return reverse('webapp:project_list_view')
-
+        return reverse('webapp:project_user_list_view',
+                       kwargs={'project_pk': self.kwargs.get('project_pk')})
