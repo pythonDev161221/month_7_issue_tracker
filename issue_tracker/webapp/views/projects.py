@@ -1,7 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models import F
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -29,7 +27,10 @@ class ProjectCreateView(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        self.object = form.save()
+        self.object.users.add(self.request.user)
+        return HttpResponseRedirect(self.get_success_url())
+
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -59,7 +60,7 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        return super().has_permission() or self.get_object().author == self.request.user
+        return super().has_permission() or self.get_object().users == self.request.user
 
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
@@ -82,7 +83,7 @@ class ProjectUserListView(PermissionRequiredMixin, DetailView):
     permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        return super().has_permission() or self.get_object().author == self.request.user
+        return super().has_permission() or self.get_object().users == self.request.user
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -96,7 +97,7 @@ class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        return super().has_permission() or self.get_object().author == self.request.user
+        return super().has_permission() or self.get_object().users == self.request.user
 
 
 
