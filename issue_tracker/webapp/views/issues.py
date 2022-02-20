@@ -23,6 +23,7 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
         issue = form.save(commit=False)
         issue.project = project
+        issue.author = self.request.user
         issue.save()
         return super(CreateIssueView, self).form_valid(form)
 
@@ -41,7 +42,8 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
         return super().has_permission()
 
     def get_success_url(self):
-        return reverse('webapp:project_detail_view', kwargs={'project_pk': self.kwargs.get('project_pk')})
+        return reverse('webapp:project_detail_view',
+                       kwargs={'project_pk': self.kwargs.get('project_pk')})
 
 
 # class IssueDeleteView(View):
