@@ -65,7 +65,7 @@ class Project(models.Model):
                                related_name='projects_create', default=1,
                                verbose_name='автор')
     description = models.TextField(max_length=2000)
-    users = models.ManyToManyField(get_user_model(), related_name='projects_join')
+    users = models.ManyToManyField(get_user_model(), related_name='projects')
 
     def get_absolute_url(self):
         return reverse('webapp:project_list_view')
