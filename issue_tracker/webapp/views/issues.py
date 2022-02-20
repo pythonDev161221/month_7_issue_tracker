@@ -39,7 +39,7 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_issue'
 
     def has_permission(self):
-        return super().has_permission()
+        return super().has_permission() or self.get_object().author == self.request.user
 
     def get_success_url(self):
         return reverse('webapp:project_detail_view',
@@ -64,7 +64,7 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_issue'
 
     def has_permission(self):
-        return super().has_permission()
+        return super().has_permission() or self.get_object().author == self.request.user
 
     def form_valid(self, form):
         success_url = self.get_success_url()

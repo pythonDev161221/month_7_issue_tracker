@@ -59,7 +59,7 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        return super().has_permission()
+        return super().has_permission() or self.get_object().author == self.request.user
 
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
@@ -92,7 +92,7 @@ class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        return super().has_permission()
+        return super().has_permission() or self.get_object().author == self.request.user
 
 
 
