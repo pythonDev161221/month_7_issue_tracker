@@ -1,4 +1,5 @@
-    {% for project in projects %}
+<h2>Проекты</h2>
+{% for project in projects %}
         <div>
             <a href="{% url 'webapp:project_detail_view' project.pk %}">
                 {{ project.name }}{{ project.description }}</a>

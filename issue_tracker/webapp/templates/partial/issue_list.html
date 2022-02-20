@@ -1,3 +1,4 @@
+    <h2>Задачи</h2>
     {% for issue in issues %}
         <div>
             <a href="{% url 'webapp:issue_detail_view' issue.pk %}">

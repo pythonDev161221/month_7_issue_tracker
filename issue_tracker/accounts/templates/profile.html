@@ -2,7 +2,6 @@
 
 {% block content %}
 
-{#    {{ user_object }}#}
         <h1>Профиль пользователя {{ user_object.username }}</h1>
     <p><strong>Почта: </strong>{{ user_object.email|default:"Не указана"}}</p>
     <p><strong>Github ссылка: </strong>{{ user_object.profile.github|default:"Не указана" }}</p>

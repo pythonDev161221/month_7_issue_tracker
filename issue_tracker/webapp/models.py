@@ -62,10 +62,10 @@ class Project(models.Model):
     finish_date = models.DateField(null=True, blank=True)
     name = models.CharField(max_length=200)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
-                               related_name='projects', default=1,
+                               related_name='projects_create', default=1,
                                verbose_name='автор')
     description = models.TextField(max_length=2000)
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(get_user_model(), related_name='projects_join')
 
     def get_absolute_url(self):
         return reverse('webapp:project_list_view')
