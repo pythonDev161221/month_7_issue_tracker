@@ -32,10 +32,11 @@ class UserProfileView(LoginRequiredMixin, DetailView):
     template_name = "profile.html"
     context_object_name = "user_object"
 
-    # def get_context_data(self, **kwargs):
-    #     kwargs = super().get_context_data(**kwargs)
-    #     projects =
-    #     return kwargs
+    def get_context_data(self, **kwargs):
+        kwargs = super().get_context_data(**kwargs)
+        projects = self.object.projects.all()
+        kwargs['projects'] = projects
+        return kwargs
 
 
 

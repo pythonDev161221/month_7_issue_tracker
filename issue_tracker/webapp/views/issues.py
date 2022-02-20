@@ -93,6 +93,3 @@ class IssueListView(ListView):
         queryset = super().get_queryset()
         queryset = queryset.filter(is_deleted__exact=False)
         return queryset
-
-
-
