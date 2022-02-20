@@ -67,9 +67,13 @@ class Project(models.Model):
     description = models.TextField(max_length=2000)
     users = models.ManyToManyField(User)
 
-
     def get_absolute_url(self):
         return reverse('webapp:project_list_view')
 
     def __str__(self):
         return f'{self.name, self.finish_date}'
+
+    class Meta:
+        permissions = [
+            ('can_manage_users', "Может управлять пользавателями"),
+        ]

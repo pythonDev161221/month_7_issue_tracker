@@ -75,10 +75,14 @@ class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
         return reverse('webapp:project_list_view')
 
 
-class ProjectUserListView(DetailView):
+class ProjectUserListView(PermissionRequiredMixin, DetailView):
     model = Project
     template_name = 'projects/project_user_list_view.html'
     pk_url_kwarg = 'project_pk'
+    permission_required = 'webapp.can_manage_users'
+
+    def has_permission(self):
+        return super().has_permission() or self.get_object().author == self.request.user
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
