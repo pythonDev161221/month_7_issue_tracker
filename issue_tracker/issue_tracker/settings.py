@@ -135,6 +135,7 @@ LOGOUT_REDIRECT_URL = "accounts:login"
 
 LOGIN_URL = "accounts:login"
 
+
 try:
     from issue_tracker.local_settings import *
 except ModuleNotFoundError:
