@@ -8,7 +8,7 @@
 
 {% block content %}
 <form action="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}"
-      method="post">{% csrf_token %}
+      method="post">
 {% include 'partial/issue_form.html' with button_text='Обновить' %}
 </form>
 {% endblock %}
