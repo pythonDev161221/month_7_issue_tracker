@@ -27,6 +27,10 @@ class ProjectCreateView(PermissionRequiredMixin, CreateView):
     def has_permission(self):
         return super().has_permission()
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse('webapp:project_list_view')
 
@@ -89,6 +93,8 @@ class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         return super().has_permission()
+
+
 
     def get_success_url(self):
         return reverse('webapp:project_user_list_view',
