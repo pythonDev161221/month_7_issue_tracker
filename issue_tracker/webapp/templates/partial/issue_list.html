@@ -4,12 +4,21 @@
             <a href="{% url 'webapp:issue_detail_view' issue.pk %}">
                 {{ issue.summary }}: {{ issue.description }}
             </a>
+{#               {% for user in issue.project.users.all %}#}
+{#                  *{{ user }}={{ request.user }}#}
+{#                {% if user == request.user %}#}
             {% if perms.webapp.change_issue %}
-            ***
-            <a href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
+{#            {% if request.user in issue.project.users.all %}#}
+
+                  ***
+            <a href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить</a>
+
+{#                {% endif %}#}
             {% endif %}
+{#        {% endif %}#}
+{#                {% endfor %}#}
             {% if perms.webapp.delete_issue %}
-                <a href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить</a></p>
+               |  <a href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить</a></p>
             {% endif %}
         </div>
     {% endfor %}
