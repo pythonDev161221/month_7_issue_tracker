@@ -12,8 +12,9 @@
 {% endblock nav %}
 
 {% block content %}
-<h2>{{ project.name }}</h2>
-   <p>{{ project.description }}</p>
-    <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
+<h2>Проект: {{ project.name }}</h2>
+   <p>Описание: {{ project.description }}</p>
+    <p>Время выполнения:
+        * {{ project.start_date|date:"D d M Y" }} --- {{ project.finish_date|date:"D d M Y" }} *</p>
     {% include 'partial/issue_list.html' %}
 {% endblock content %}
