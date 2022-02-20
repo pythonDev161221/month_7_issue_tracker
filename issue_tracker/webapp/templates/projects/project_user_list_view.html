@@ -7,5 +7,7 @@
             <a href="{% url 'accounts:profile' user.id %}">{{ user }}</a>
         </p>
     {% endfor %}
+    {% if perms.webapp.change_project %}
     <a href="{% url 'webapp:project_user_add_view' project.pk %}"><button>Add user</button></a>
+    {% endif %}
 {% endblock %}

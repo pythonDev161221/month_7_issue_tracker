@@ -37,6 +37,6 @@ class ProjectUserForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['users', ]
-        # widgets = {
-        #     'users': forms.MultipleChoiceField
-        # }
+        widgets = {
+            'users': forms.CheckboxSelectMultiple
+        }
