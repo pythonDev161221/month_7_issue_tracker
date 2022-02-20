@@ -9,11 +9,11 @@
   <a class="nav-link" href="{% url 'webapp:create_issue_view' project.pk %}">Добавить задание</a>
 </li>
 {% endif %}
-{% endblock %}
+{% endblock nav %}
 
 {% block content %}
 <h2>{{ project.name }}</h2>
    <p>{{ project.description }}</p>
     <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
     {% include 'partial/issue_list.html' %}
-{% endblock %}
+{% endblock content %}

@@ -3,14 +3,16 @@
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:project_detail_view' issue.project.pk %}">Проект</a>
 </li>
-    {% if user.is_authenticated %}
+        {% if perms.webapp.change_issue %}
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить задание</a>
 </li>
+            {% endif %}
+        {% if perms.webapp.delete_issue %}
 <li class="nav-item">
   <a class="nav-link" href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить задание</a>
 </li>
-    {% endif %}
+            {% endif %}
 {% endblock %}
 {% block content %}
     <h2>Страница задачи</h2>
