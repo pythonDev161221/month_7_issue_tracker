@@ -37,9 +37,11 @@
             <a class="nav-link" href="{% url 'accounts:register' %}?next={{ request.get_full_path }}">Зарегистрироваться</a>
         </li>
       {% else %}
+          {% if perms.webapp.create_project %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'webapp:project_create_view' %}">Добавить проект</a>
         </li>
+              {% endif %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
         </li>
