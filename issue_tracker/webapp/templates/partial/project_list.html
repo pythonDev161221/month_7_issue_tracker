@@ -1,0 +1,14 @@
+    {% for project in projects %}
+        <div>
+            <a href="{% url 'webapp:project_detail_view' project.pk %}">
+                {{ project.name }}{{ project.description }}</a>
+            {% if user.is_authenticated %}
+            *** <a href="{% url 'webapp:project_update_view' project.pk %}">Изменить</a> |
+            <a href="{% url 'webapp:project_delete_view' project.pk %}">Удалить</a>
+            {% endif %} |
+            <a href="{% url 'webapp:project_user_list_view' project.pk %}">Пользователи</a>
+        </div>
+    {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}

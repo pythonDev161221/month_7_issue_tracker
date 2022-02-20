@@ -30,7 +30,12 @@ class RegisterView(CreateView):
 class UserProfileView(LoginRequiredMixin, DetailView):
     model = get_user_model()
     template_name = "profile.html"
-    context_object_name = "user_profile"
+    context_object_name = "user_object"
+
+    # def get_context_data(self, **kwargs):
+    #     kwargs = super().get_context_data(**kwargs)
+    #     projects =
+    #     return kwargs
 
 
 
