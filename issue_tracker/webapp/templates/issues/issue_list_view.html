@@ -5,16 +5,7 @@
 </li>
 {% endblock %}
 {% block content %}
-{% for issue in issue_list %}
-    <div>
-        <a href="{% url 'webapp:issue_detail_view' issue.pk %}">{{ issue.summary }}: "{{ issue.description }}"</a>
-        {% if user.is_authenticated %}
-        ***
-        <a href="{% url 'webapp:issue_update_view' issue.project.pk issue.pk %}">Изменить</a> |
-        <a href="{% url 'webapp:issue_delete_view' issue.project.pk issue.pk %}">Удалить</a>
-        {% endif %}
-    </div>
-{% endfor %}
+    {% include 'partial/issue_list.html' %}
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}
     {% endif %}

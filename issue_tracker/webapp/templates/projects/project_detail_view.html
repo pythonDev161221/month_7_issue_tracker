@@ -15,16 +15,5 @@
 <h2>{{ project.name }}</h2>
    <p>{{ project.description }}</p>
     <p>Time of project {{ project.start_date }}{{ project.finish_date }}</p>
-    {% for issue in issues %}
-        <div>
-            <a href="{% url 'webapp:issue_detail_view' issue.pk %}">
-                {{ issue.summary }}: {{ issue.description }}
-            </a>
-            {% if user.is_authenticated %}
-            ***
-            <a href="{% url 'webapp:issue_update_view' project.pk issue.pk %}">Изменить</a> |
-        <a href="{% url 'webapp:issue_delete_view' project.pk issue.pk %}">Удалить</a></p>
-            {% endif %}
-        </div>
-    {% endfor %}
+    {% include 'partial/issue_list.html' %}
 {% endblock %}
