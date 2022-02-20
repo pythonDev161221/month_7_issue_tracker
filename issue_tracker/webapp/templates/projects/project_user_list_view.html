@@ -4,8 +4,8 @@
 
     {% for user in project.users.all %}
         <p>
-        {{ user }}
+            <a href="{% url 'accounts:profile' user.id %}">{{ user }}</a>
         </p>
     {% endfor %}
-    <a href="{% url 'webapp:project_user_add_view' project.pk %}">Add user</a>
+    <a href="{% url 'webapp:project_user_add_view' project.pk %}"><button>Add user</button></a>
 {% endblock %}
