@@ -23,6 +23,7 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
         return super().has_permission()
                # and bool_val
 
+
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
         issue = form.save(commit=False)

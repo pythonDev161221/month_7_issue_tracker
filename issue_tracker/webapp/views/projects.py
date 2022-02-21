@@ -27,7 +27,6 @@ class ProjectCreateView(PermissionRequiredMixin, CreateView):
         self.object.users.add(self.request.user)
         return HttpResponseRedirect(self.get_success_url())
 
-
     def get_success_url(self):
         return reverse('webapp:project_list_view')
 
@@ -61,14 +60,6 @@ class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'projects/project_delete_view.html'
     pk_url_kwarg = 'project_pk'
     permission_required = 'webapp.delete_project'
-
-    def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
