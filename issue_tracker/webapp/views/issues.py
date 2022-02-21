@@ -3,14 +3,51 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.urls import reverse
+from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView, ListView, DeleteView
 
 from webapp.forms import IssueForm
 from webapp.models import Issue, Project
 
 
-# class CreateIssueView(PermissionRequiredMixin, View):
-
+# class CreateIssueView(View):
+#     def get(self, request, *args, **kwargs):
+#         context = {}
+#         form = IssueForm()
+#         context['form'] = form
+#         return render(request, "issues/create_issue_view.html", context)
+#
+#     def post(self, request, *args, **kwargs):
+#         form = IssueForm(data=request.POST)
+#         if form.is_valid():
+#             summary = form.cleaned_data.get('summary')
+#             author = self.request.user
+#             description = form.cleaned_data.get('description')
+#             status = form.cleaned_data.get('status')
+#             project = Project.objects.get(pk=self.kwargs.get('project_pk'))
+#             is_deleted = False
+#             type_names = form.cleaned_data.get('type_names')
+#             # print(summary, author, description, status, project, is_deleted, type_names)
+#             print(summary)
+#             print(author)
+#             print(description)
+#             print(status)
+#             print(project)
+#             print(is_deleted)
+#             print(type_names)
+#             new_issue = Issue(summary=summary, author=author,
+#                               description=description, status=status, project=project,
+#                               is_deleted=is_deleted)
+#             new_issue.type_names.add(type_names)
+#             new_issue.save()
+#             return redirect("webapp:project_detail_view", pk=self.kwargs.get('project_pk'))
+#         return redirect("webapp:project_list_view")
+#
+#         # issue = Issue.objects.create()
+#         # issue.project = Project.objects.get(pk=self.kwargs.get('project_pk'))
+#
+#
+#         # return render(request, "issues/create_issue_view.html", context)
 
 class CreateIssueView(PermissionRequiredMixin, CreateView):
     model = Issue
@@ -19,9 +56,8 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_issue'
 
     def has_permission(self):
-        # bool_val = any(user == self.request.user for user in self.get_object().project.users.all())
-        return super().has_permission()
-               # and bool_val
+        project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
+        return super().has_permission() and self.request.user in project.users.all()
 
 
     def form_valid(self, form):
