@@ -16,12 +16,8 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_issue'
 
     def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
+        return super().has_permission() or \
+               any(user == self.request.user for user in self.object.users.all())
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
@@ -43,12 +39,8 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_issue'
 
     def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
+        return super().has_permission() or \
+               any(user == self.request.user for user in self.object.users.all())
 
     def get_success_url(self):
         return reverse('webapp:project_detail_view',
@@ -73,12 +65,8 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_issue'
 
     def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
+        return super().has_permission() or \
+               any(user == self.request.user for user in self.object.users.all())
 
     def form_valid(self, form):
         success_url = self.get_success_url()

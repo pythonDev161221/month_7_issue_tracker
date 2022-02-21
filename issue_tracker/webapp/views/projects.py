@@ -60,12 +60,8 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
+        return super().has_permission() or \
+               any(user == self.request.user for user in self.object.users.all())
 
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
@@ -93,12 +89,8 @@ class ProjectUserListView(PermissionRequiredMixin, DetailView):
     permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        user_pk = self.request.user.pk
-        bool_val = False
-        for u in self.get_object().users.all():
-            if u.pk == user_pk:
-                bool_val = True
-        return super().has_permission() or bool_val
+        return super().has_permission() or \
+               any(user == self.request.user for user in self.object.users.all())
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
