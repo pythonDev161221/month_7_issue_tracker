@@ -19,11 +19,7 @@ class ProjectCreateView(PermissionRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     template_name = 'projects/project_create_view.html'
-
     permission_required = 'webapp.add_project'
-
-    def has_permission(self):
-        return super().has_permission()
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -59,10 +55,6 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = ProjectForm
     permission_required = 'webapp.change_project'
 
-    def has_permission(self):
-        return super().has_permission() or \
-               any(user == self.request.user for user in self.object.users.all())
-
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     model = Project
@@ -89,8 +81,8 @@ class ProjectUserListView(PermissionRequiredMixin, DetailView):
     permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        return super().has_permission() or \
-               any(user == self.request.user for user in self.object.users.all())
+        bool_val = any(user == self.request.user for user in self.get_object().users.all())
+        return super().has_permission() and bool_val
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -101,12 +93,11 @@ class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
     form_class = ProjectUserForm
     pk_url_kwarg = 'project_pk'
     template_name = 'projects/project_user_add_view.html'
-    permission_required = 'webapp.change_project'
+    permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        return super().has_permission() or \
-               any(user == self.request.user for user in self.object.users.all())
-
+        bool_val = any(user == self.request.user for user in self.get_object().users.all())
+        return super().has_permission() and bool_val
 
     def get_success_url(self):
         return reverse('webapp:project_user_list_view',

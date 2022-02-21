@@ -9,6 +9,9 @@ from webapp.forms import IssueForm
 from webapp.models import Issue, Project
 
 
+# class CreateIssueView(PermissionRequiredMixin, View):
+
+
 class CreateIssueView(PermissionRequiredMixin, CreateView):
     model = Issue
     template_name = 'issues/create_issue_view.html'
@@ -16,8 +19,9 @@ class CreateIssueView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_issue'
 
     def has_permission(self):
-        return super().has_permission() and \
-               any(user == self.request.user for user in self.get_object.project.users.all())
+        # bool_val = any(user == self.request.user for user in self.get_object().project.users.all())
+        return super().has_permission()
+               # and bool_val
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
@@ -40,7 +44,7 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         return super().has_permission() and \
-               any(user == self.request.user for user in self.object.users.all())
+               any(user == self.request.user for user in self.get_object().project.users.all())
 
     def get_success_url(self):
         return reverse('webapp:project_detail_view',
@@ -66,7 +70,7 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         return super().has_permission() and \
-               any(user == self.request.user for user in self.object.users.all())
+               any(user == self.request.user for user in self.get_object().project.users.all())
 
     def form_valid(self, form):
         success_url = self.get_success_url()
