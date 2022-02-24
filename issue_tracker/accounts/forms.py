@@ -6,6 +6,7 @@ from accounts.models import Profile
 
 User = get_user_model()
 
+
 class MyUserCreateForm(UserCreationForm):
 
     email = forms.EmailField(
