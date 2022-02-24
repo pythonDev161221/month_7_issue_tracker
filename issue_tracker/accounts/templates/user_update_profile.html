@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
-{#{% block nav %}#}
-{#    #}
-{#{% endblock %}#}
+{% block nav %}
+    {% if user_object == user %}
+<li class="nav-item">
+<a class="nav-link" href="{% url "accounts:profile" request.user.pk %}">Назад</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'accounts:user_password_change_view' request.user.pk %}">Изменить пароль</a>
+</li>
+    {% endif %}
+{% endblock %}
 {% block content %}
     <h1>Поменять личные данные</h1>
     <form method="post" enctype="multipart/form-data">

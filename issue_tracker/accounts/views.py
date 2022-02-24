@@ -73,10 +73,6 @@ class UserChangeUpdateView(PermissionRequiredMixin, UpdateView):
         return self.render_to_response(context)
 
     def get_profile_form(self):
-        # if self.object.profile is None:
-        #     profile = Profile.objects.create()
-        #     profile.user = self.object
-        #     profile.save()
         try:
             a = self.object.profile
         except:
