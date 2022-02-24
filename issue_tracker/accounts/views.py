@@ -1,11 +1,11 @@
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 
-from accounts.forms import MyUserCreateForm, ProfileChangeForm, UserChangeForm
+from accounts.forms import MyUserCreateForm, ProfileChangeForm, UserChangeForm, PasswordChangeForm
 
 
 class RegisterView(CreateView):
@@ -80,6 +80,25 @@ class UserChangeUpdateView(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:profile', kwargs={'pk': self.object.pk})
+
+
+class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    template_name = 'user_password_change.html'
+    form_class = PasswordChangeForm
+    context_object_name = 'user_object'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        update_session_auth_hash(self.request, self.object)
+        return response
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse("accounts:profile", kwargs={"pk": self.request.user.pk})
+
 
 # Create your views here.
 # def login_view(request):

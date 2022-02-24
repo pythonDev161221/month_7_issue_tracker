@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 {% block nav %}
+    {% if user_object == user %}
 <li class="nav-item">
 <a class="nav-link" href="
 {% url 'accounts:user_change_update_view' user_object.pk %}"
 >Изменить профиль</a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="
+{% url 'accounts:user_password_change_view' user_object.pk %}"
+>Изменить пароль</a>
+</li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
