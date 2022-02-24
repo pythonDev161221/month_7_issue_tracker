@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{#{% block nav %}#}
+{#    #}
+{#{% endblock %}#}
+{% block content %}
+    <h1>Поменять личные данные</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'partial/issue_form.html' with form=form fields_only=True %}
+        {% include 'partial/issue_form.html' with form=profile_form fields_only=True %}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

@@ -133,9 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR.joinpath("uploads")
 MEDIA_URL = "media/"
 
-
-
-
 try:
     from issue_tracker.local_settings import *
 except ModuleNotFoundError:

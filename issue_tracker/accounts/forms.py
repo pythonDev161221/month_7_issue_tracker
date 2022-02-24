@@ -1,7 +1,10 @@
-from django.contrib.auth import password_validation
+from django.contrib.auth import password_validation, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
+from accounts.models import Profile
+
+User = get_user_model()
 
 class MyUserCreateForm(UserCreationForm):
 
@@ -21,3 +24,15 @@ class MyUserCreateForm(UserCreationForm):
             raise ValueError('email is required')
         return cleaned_data
 
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+
+
+class ProfileChangeForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
