@@ -72,8 +72,7 @@ class ProjectUserListView(PermissionRequiredMixin, DetailView):
     permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        bool_val = any(user == self.request.user for user in self.get_object().users.all())
-        return super().has_permission() and bool_val
+        return super().has_permission() and self.request.user in self.get_object().users.all()
 
     def get_success_url(self):
         return reverse('webapp:project_list_view')
@@ -87,8 +86,7 @@ class ProjectUserAddView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.can_manage_users'
 
     def has_permission(self):
-        bool_val = any(user == self.request.user for user in self.get_object().users.all())
-        return super().has_permission() and bool_val
+        return super().has_permission() and self.request.user in self.get_object().users.all()
 
     def get_success_url(self):
         return reverse('webapp:project_user_list_view',

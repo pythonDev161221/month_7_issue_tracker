@@ -3,8 +3,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-# import webapp.models
 from django.urls import reverse
 
 from webapp.validatiors import MinLengthValidator
@@ -18,16 +16,6 @@ class BaseStr(models.Model):
 
 class Type(BaseStr):
     name = models.CharField(max_length=100, null=False, blank=False, default='Task')
-
-
-# class IssueType(models.Model):
-#     issue = models.ForeignKey('webapp.Issue', related_name='issue_types',
-#                               on_delete=models.CASCADE, verbose_name='Задача')
-#     type_name = models.ForeignKey('webapp.Type', on_delete=models.CASCADE,
-#                                   related_name='type_issues', verbose_name='Тип')
-#
-#     def __str__(self):
-#         return '{} | {}'.format(self.issue, self.type_name)
 
 
 class Status(BaseStr):
