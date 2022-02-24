@@ -8,6 +8,7 @@
         </p>
     {% endfor %}
     {% if perms.webapp.can_manage_users %}
-    <a href="{% url 'webapp:project_user_add_view' project.pk %}"><button>Add user</button></a>
+    <a href="{% url 'webapp:project_user_add_view' project.pk %}">
+        <button>Add user</button></a>
     {% endif %}
 {% endblock %}

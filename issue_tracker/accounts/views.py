@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
 
 from accounts.forms import MyUserCreateForm, ProfileChangeForm, UserChangeForm, PasswordChangeForm
+from accounts.models import Profile
 
 
 class RegisterView(CreateView):
@@ -72,6 +73,17 @@ class UserChangeUpdateView(PermissionRequiredMixin, UpdateView):
         return self.render_to_response(context)
 
     def get_profile_form(self):
+        # if self.object.profile is None:
+        #     profile = Profile.objects.create()
+        #     profile.user = self.object
+        #     profile.save()
+        try:
+            a = self.object.profile
+        except:
+            profile = Profile()
+            profile.user = self.object
+            profile.save()
+
         form_kwargs = {'instance': self.object.profile}
         if self.request.method == 'POST':
             form_kwargs['data'] = self.request.POST
@@ -82,11 +94,14 @@ class UserChangeUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse('accounts:profile', kwargs={'pk': self.object.pk})
 
 
-class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
+class UserPasswordChangeView(PermissionRequiredMixin, UpdateView):
     model = get_user_model()
     template_name = 'user_password_change.html'
     form_class = PasswordChangeForm
     context_object_name = 'user_object'
+
+    def has_permission(self):
+        return self.request.user == self.get_object()
 
     def form_valid(self, form):
         response = super().form_valid(form)
